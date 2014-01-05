@@ -51,7 +51,7 @@ class NormalDistributionService
      */
     protected function getMeanValue(array &$values)
     {
-        $count=count($v);
+        $count=count($values);
         if ($count==0) {
             return array(0, 0, 0);
         }
