@@ -8,17 +8,19 @@ namespace HappyR\NormalDistributionBundle\Services;
  *
  * @author Tobias Nyholm
  *
+ * Get some values from a already calculated normal distribution
+ *
  */
 class StatisticsService
 {
     /**
      * Get the procentile for a curtan value
      *
-     * @param $value
-     * @param int $meanValue
-     * @param int $standardDeviation
+     * @param float $value
+     * @param float $meanValue
+     * @param float $standardDeviation
      *
-     * @return float
+     * @return float [0, 1]
      */
     public function getPercentile($value, $meanValue = 0, $standardDeviation = 1)
     {
@@ -32,6 +34,7 @@ class StatisticsService
         $p = 0.2316419;
         $c = 0.39894228;
 
+        /* I choose not to comment this becasue I want to give future me an headache. //Tobias */
         if ($z >= 0.0) {
             $t = 1.0 / (1.0 + $p * $z);
 
@@ -48,11 +51,11 @@ class StatisticsService
     /**
      * This will return the corresponding value in a standard normal distibution
      *
-     * @param $value
-     * @param $meanValue
-     * @param $standardDeviation
+     * @param float $value
+     * @param float $meanValue
+     * @param float $standardDeviation
      *
-     * @return int
+     * @return float
      */
     public function getZTransform($value, $meanValue, $standardDeviation)
     {
@@ -63,9 +66,9 @@ class StatisticsService
      * Get the stanine value
      * http://en.wikipedia.org/wiki/Stanine
      *
-     * @param $value
-     * @param $meanValue
-     * @param $standardDeviation
+     * @param float $value
+     * @param float $meanValue
+     * @param float $standardDeviation
      *
      * @return int [1,9]
      */
@@ -88,9 +91,9 @@ class StatisticsService
      * Return the stanine slot for given percentage
      * http://en.wikipedia.org/wiki/Stanine
      *
-     * @param int $percentile
+     * @param float $percentile
      *
-     * @return int
+     * @return int [1,9]
      */
     public function getStanineForProcentile($percentile)
     {
@@ -107,7 +110,6 @@ class StatisticsService
             }
         }
 
-        //return max value
         return 9;
     }
 }

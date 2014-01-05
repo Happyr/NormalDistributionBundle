@@ -9,7 +9,7 @@ namespace HappyR\NormalDistributionBundle\Services;
  *
  * @author Tobias Nyholm
  *
- * Calculate the normal distrbution for a set of values where the values are unbounded
+ * Calculate the normal distrbution for a set of values.
  */
 class NormalDistributionCalculator
 {
@@ -19,8 +19,9 @@ class NormalDistributionCalculator
      * A standard normal distribution (or the unit normal distribution) is where
      * mean value=0 and the standard distribution=1
      *
-     * @param array $values
+     * @param array &$values
      *
+     * @return array $zValues
      */
     public function calculateStandardNormalDistribution(array &$values)
     {
@@ -29,7 +30,7 @@ class NormalDistributionCalculator
         //calculate z transform values
         $zValues=array();
         foreach ($values as $v) {
-            $zValues[]=($v-$meanValue)/$standardDeviation;
+            $zValues[] = ($v-$meanValue)/$standardDeviation;
         }
 
         return $zValues;
@@ -66,7 +67,7 @@ class NormalDistributionCalculator
     /**
      * Get the mean value
      *
-     * @param array $values
+     * @param array &$values
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
@@ -97,13 +98,13 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Call this whem population count is 0 or 1.
+     * Call this when population count is 0 or 1.
      * This handles those special cases
      *
      * @param array $values
-     * @param $populationCount
+     * @param int $populationCount
      *
-     * @return array
+     * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
     protected function tooSmallPopulation(array $values, $populationCount)
     {
