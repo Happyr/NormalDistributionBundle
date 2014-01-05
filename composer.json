@@ -1,0 +1,30 @@
+{
+    "name": "happyr/normal-distribution-bundle",
+    "type": "symfony-bundle",
+    "description": "A bundle to calculate normal distribution and other related stuff",
+    "keywords": ["Statistics", "normal distribution", "standard deviation"],
+    "homepage": "http://developer.happyr.se/symfony2-bundles/happyr-normal-distribution-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Nyholm",
+            "email": "tobias@happyrecruiting.se"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.0",
+        "symfony/yaml": "2.*",
+        "happyr/identifier-interface": "1.0.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "HappyR\\NormalDistributionBundle": ""
+        }
+    },
+    "target-dir": "HappyR/NormalDistributionBundle"
+
+}
