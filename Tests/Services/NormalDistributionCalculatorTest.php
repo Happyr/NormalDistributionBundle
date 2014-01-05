@@ -18,7 +18,7 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $calculator=new NormalDistributionCalculatorDummy();
 
-        $result=$calculator->calculateNormalDistribution(array(4, 2, 1, 5, 8, 1, 7));
+        $result=$calculator->dummyNormalDistribution(array(4, 2, 1, 5, 8, 1, 7));
         $this->assertEquals(array(4, sqrt(8), 7, 7), $result);
     }
 
@@ -26,10 +26,10 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $calculator=new NormalDistributionCalculatorDummy();
 
-        $result=$calculator->getMeanValue(array(2,5,8,4));
+        $result=$calculator->dummyMeanValue(array(2,5,8,4));
         $this->assertEquals(array(4.75,6,4), $result);
 
-        $result=$calculator->getMeanValue(array(5,5,5));
+        $result=$calculator->dummyMeanValue(array(5,5,5));
         $this->assertEquals(array(5,0,3), $result);
     }
 
@@ -48,12 +48,12 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 
 class NormalDistributionCalculatorDummy extends NormalDistributionCalculator
 {
-    public function calculateNormalDistribution(array $values)
+    public function dummyNormalDistribution(array $values)
     {
         return parent::calculateNormalDistribution($values);
     }
 
-    public function getMeanValue(array $values)
+    public function dummyMeanValue(array $values)
     {
         return parent::getMeanValue($values);
     }
