@@ -24,7 +24,7 @@ class NormalDistributionCalculator
      */
     public function calculateStandardNormalDistribution(array &$values)
     {
-        list($meanValue, $standardDeviation, $variance, $populationCount)=$this->calculateNormalDistribution($values);
+        list($meanValue, $standardDeviation)=$this->calculateNormalDistribution($values);
 
         //calculate z transform values
         $zValues=array();
@@ -108,10 +108,10 @@ class NormalDistributionCalculator
      */
     protected function tooSmallPopulation(array $values, $populationCount)
     {
-        if  ($populationCount==0) {
+        if ($populationCount==0) {
             return array(0, 0, 0, 0);
         }
 
         return array(array_shift($values), 0, 0, 1);
     }
-} 
+}

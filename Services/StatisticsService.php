@@ -3,7 +3,6 @@
 
 namespace HappyR\NormalDistributionBundle\Services;
 
-
 /**
  * Class StatisticsService
  *
@@ -21,29 +20,29 @@ class StatisticsService
      *
      * @return float
      */
-    public function getPercentile($value, $meanValue=0, $standardDeviation=1)
+    public function getPercentile($value, $meanValue = 0, $standardDeviation = 1)
     {
-        $z=$this->getZTransform($value, $meanValue, $standardDeviation);
+        $z = $this->getZTransform($value, $meanValue, $standardDeviation);
 
-        $b1 =  0.319381530;
+        $b1 = 0.319381530;
         $b2 = -0.356563782;
-        $b3 =  1.781477937;
+        $b3 = 1.781477937;
         $b4 = -1.821255978;
-        $b5 =  1.330274429;
-        $p  =  0.2316419;
-        $c  =  0.39894228;
+        $b5 = 1.330274429;
+        $p = 0.2316419;
+        $c = 0.39894228;
 
-        if($z >= 0.0) {
-            $t = 1.0 / ( 1.0 + $p * $z );
-            return (1.0 - $c * exp( -$z * $z / 2.0 ) * $t *
-                ( $t *( $t * ( $t * ( $t * $b5 + $b4 ) + $b3 ) + $b2 ) + $b1 ));
-        }
-        else {
-            $t = 1.0 / ( 1.0 - $p * $z );
-            return ( $c * exp( -$z * $z / 2.0 ) * $t *
-                ( $t *( $t * ( $t * ( $t * $b5 + $b4 ) + $b3 ) + $b2 ) + $b1 ));
-        }
+        if ($z >= 0.0) {
+            $t = 1.0 / (1.0 + $p * $z);
 
+            return (1.0 - $c * exp(-$z * $z / 2.0) * $t *
+                ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
+        } else {
+            $t = 1.0 / (1.0 - $p * $z);
+
+            return ($c * exp(-$z * $z / 2.0) * $t *
+                ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
+        }
     }
 
     /**
@@ -57,7 +56,7 @@ class StatisticsService
      */
     public function getZTransform($value, $meanValue, $standardDeviation)
     {
-        return ($value-$meanValue)/$standardDeviation;
+        return ($value - $meanValue) / $standardDeviation;
     }
 
     /**
@@ -70,15 +69,14 @@ class StatisticsService
      *
      * @return int [1,9]
      */
-    public function getStanine($value, $meanValue=0, $standardDeviation=1)
+    public function getStanine($value, $meanValue = 0, $standardDeviation = 1)
     {
         //$bound is now the lower limit of stanine=2
-        $bound=$meanValue-(1.75*$standardDeviation);
-        $change=0.5*$standardDeviation;
+        $bound = $meanValue - (1.75 * $standardDeviation);
+        $change = 0.5 * $standardDeviation;
 
-
-        for ($i=1; $i<9; $i++, $bound+=$change) {
-            if ($value<$bound) {
+        for ($i = 1; $i < 9; $i++, $bound += $change) {
+            if ($value < $bound) {
                 return $i;
             }
         }
