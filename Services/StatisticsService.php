@@ -1,6 +1,5 @@
 <?php
 
-
 namespace HappyR\NormalDistributionBundle\Services;
 
 /**

@@ -55,7 +55,6 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
         $result=$calculator->calculateNormalDistribution($param);
         $this->assertEquals(4711, $result);
 
-
         $param=array();
         $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('tooSmallPopulation'));
         $calculator->expects($this->once())

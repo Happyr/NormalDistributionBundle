@@ -1,8 +1,6 @@
 <?php
 
-
 namespace HappyR\NormalDistributionBundle\Services;
-
 
 /**
  * Class NormalDistributionService
@@ -13,7 +11,6 @@ namespace HappyR\NormalDistributionBundle\Services;
  */
 class NormalDistributionCalculator
 {
-
     /**
      * Calculate the standard normal distribution
      * A standard normal distribution (or the unit normal distribution) is where
@@ -59,7 +56,6 @@ class NormalDistributionCalculator
 
         //divide this sum by the populationCount-1 and square root it
         $standardDeviation=sqrt($sum/($populationCount-1));
-
 
         return array($meanValue, $standardDeviation, $variance, $populationCount);
     }
