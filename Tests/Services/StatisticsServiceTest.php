@@ -13,12 +13,22 @@ use HappyR\NormalDistributionBundle\Services\StatisticsService;
  */
 class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
 {
+    public function testGetPercentile()
+    {
+        $service=new StatisticsService();
+
+        //Yes, this is a weird test.. I compared the values from http://stattrek.com/online-calculator/normal.aspx
+        $this->assertEquals(0.78814466654826, $service->getPercentile(0.8));
+        $this->assertEquals(0.53982789667138, $service->getPercentile(0.1));
+        $this->assertEquals(0.34457830258515, $service->getPercentile(-0.4));
+    }
+
     public function testGetStanine()
     {
         $service=new StatisticsService();
 
         for ($i=1; $i<=9; $i++) {
-            $this->assertEquals($i, $service->getStanine(17, 2, 12+$i));
+            $this->assertEquals($i, $service->getStanine(12+$i, 17, 2));
         }
     }
     

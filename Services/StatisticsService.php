@@ -12,22 +12,65 @@ namespace HappyR\NormalDistributionBundle\Services;
  */
 class StatisticsService
 {
-    public function getProcentile($meanValue, $standardDeviation, $value)
+    /**
+     * Get the procentile for a curtan value
+     *
+     * @param $value
+     * @param int $meanValue
+     * @param int $standardDeviation
+     *
+     * @return float
+     */
+    public function getPercentile($value, $meanValue=0, $standardDeviation=1)
     {
+        $z=$this->getZTransform($value, $meanValue, $standardDeviation);
 
+        $b1 =  0.319381530;
+        $b2 = -0.356563782;
+        $b3 =  1.781477937;
+        $b4 = -1.821255978;
+        $b5 =  1.330274429;
+        $p  =  0.2316419;
+        $c  =  0.39894228;
+
+        if($z >= 0.0) {
+            $t = 1.0 / ( 1.0 + $p * $z );
+            return (1.0 - $c * exp( -$z * $z / 2.0 ) * $t *
+                ( $t *( $t * ( $t * ( $t * $b5 + $b4 ) + $b3 ) + $b2 ) + $b1 ));
+        }
+        else {
+            $t = 1.0 / ( 1.0 - $p * $z );
+            return ( $c * exp( -$z * $z / 2.0 ) * $t *
+                ( $t *( $t * ( $t * ( $t * $b5 + $b4 ) + $b3 ) + $b2 ) + $b1 ));
+        }
+
+    }
+
+    /**
+     * This will return the corresponding value in a standard normal distibution
+     *
+     * @param $value
+     * @param $meanValue
+     * @param $standardDeviation
+     *
+     * @return int
+     */
+    public function getZTransform($value, $meanValue, $standardDeviation)
+    {
+        return ($value-$meanValue)/$standardDeviation;
     }
 
     /**
      * Get the stanine value
      * http://en.wikipedia.org/wiki/Stanine
      *
+     * @param $value
      * @param $meanValue
      * @param $standardDeviation
-     * @param $value
      *
-     * return int [1,9]
+     * @return int [1,9]
      */
-    public function getStanine($meanValue, $standardDeviation, $value)
+    public function getStanine($value, $meanValue=0, $standardDeviation=1)
     {
         //$bound is now the lower limit of stanine=2
         $bound=$meanValue-(1.75*$standardDeviation);
@@ -39,7 +82,7 @@ class StatisticsService
                 return $i;
             }
         }
-        
+
         return 9;
     }
 

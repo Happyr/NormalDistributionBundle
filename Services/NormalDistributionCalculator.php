@@ -13,6 +13,28 @@ namespace HappyR\NormalDistributionBundle\Services;
  */
 class NormalDistributionCalculator
 {
+
+    /**
+     * Calculate the standard normal distribution
+     * A standard normal distribution (or the unit normal distribution) is where
+     * mean value=0 and the standard distribution=1
+     *
+     * @param array $values
+     *
+     */
+    public function calculateStandardNormalDistribution(array &$values)
+    {
+        list($meanValue, $standardDeviation, $variance, $populationCount)=$this->calculateNormalDistribution($values);
+
+        //calculate z transform values
+        $zValues=array();
+        foreach ($values as $v) {
+            $zValues[]=($v-$meanValue)/$standardDeviation;
+        }
+
+        return $zValues;
+    }
+
     /**
      * Calculate the normal distibution of an array
      *
