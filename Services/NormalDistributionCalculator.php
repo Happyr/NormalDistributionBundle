@@ -11,7 +11,7 @@ namespace HappyR\NormalDistributionBundle\Services;
  *
  * Calculate the normal distrbution for a set of values where the values are unbounded
  */
-class NormalDistributionService
+class NormalDistributionCalculator
 {
     /**
      * Calculate the normal distibution of an array

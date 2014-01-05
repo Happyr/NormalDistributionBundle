@@ -3,7 +3,7 @@
 
 namespace HappyR\NormalDistributionBundle\Tests\Services;
 
-use HappyR\NormalDistributionBundle\Services\NormalDistributionService;
+use HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator;
 
 /**
  * Class NormalDistributionServiceTest
@@ -11,12 +11,12 @@ use HappyR\NormalDistributionBundle\Services\NormalDistributionService;
  * @author Tobias Nyholm
  *
  */
-class NormalDistributionServiceTest extends \PHPUnit_Framework_TestCase
+class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testCalculateNormalDistribution()
     {
-        $calculator=new NormalDistributionServiceDummy();
+        $calculator=new NormalDistributionCalculatorDummy();
 
         $result=$calculator->calculateNormalDistribution(array(4, 2, 1, 5, 8, 1, 7));
         $this->assertEquals(array(4, sqrt(8), 7, 7), $result);
@@ -24,7 +24,7 @@ class NormalDistributionServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetMeanValue()
     {
-        $calculator=new NormalDistributionServiceDummy();
+        $calculator=new NormalDistributionCalculatorDummy();
 
         $result=$calculator->getMeanValue(array(2,5,8,4));
         $this->assertEquals(array(4.75,6,4), $result);
@@ -36,7 +36,7 @@ class NormalDistributionServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testTooSmallPopulation()
     {
-        $calculator=new NormalDistributionServiceDummy();
+        $calculator=new NormalDistributionCalculatorDummy();
 
         $result=$calculator->tooSmallPopulation(array(), 0);
         $this->assertEquals(array(0,0,0,0), $result);
@@ -46,7 +46,7 @@ class NormalDistributionServiceTest extends \PHPUnit_Framework_TestCase
     }
 }
 
-class NormalDistributionServiceDummy extends NormalDistributionService
+class NormalDistributionCalculatorDummy extends NormalDistributionCalculator
 {
     public function calculateNormalDistribution(array $values)
     {

@@ -1,5 +1,5 @@
 parameters:
-  happyr.normal_distirbution.normal_distirbution_service.class: HappyR\NormalDistributionBundle\Services\NormalDistributionService
+  happyr.normal_distirbution.normal_distirbution_service.class: HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator
 
 services:
   happyr.normal_distirbution.normal_distirbution_service:
