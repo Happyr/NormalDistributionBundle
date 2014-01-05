@@ -110,4 +110,4 @@ class StatisticsService
         //return max value
         return 9;
     }
-} 
+}

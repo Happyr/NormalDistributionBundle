@@ -50,11 +50,10 @@ class NormalDistributionCalculator
             return $this->tooSmallPopulation($values, $populationCount);
         }
 
-
         //we want to sum the squars of the diff for the mean value
         $sum=0;
         foreach ($values as $v) {
-            $sum+=pow($meanValue-$v,2);
+            $sum+=pow($meanValue-$v, 2);
         }
 
         //divide this sum by the populationCount-1 and square root it

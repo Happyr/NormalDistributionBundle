@@ -31,8 +31,7 @@ class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals($i, $service->getStanine(12+$i, 17, 2));
         }
     }
-    
-    
+
     public function testGetStanineForProcentile()
     {
         $service = new StatisticsService();
@@ -71,7 +70,4 @@ class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(9, $service->getStanineForProcentile(97));
         $this->assertEquals(9, $service->getStanineForProcentile(104));
     }
-
-
 }
- 
