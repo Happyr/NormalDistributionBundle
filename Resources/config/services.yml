@@ -1,44 +1,8 @@
 parameters:
-  happyr.user.project.permission_manager.class: HappyR\UserProjectBundle\Manager\PermissionManager
-  happyr.user.project.mailer.class: HappyR\UserProjectBundle\Services\MailerService
-  happyr.user.project.project_manager.class: HappyR\UserProjectBundle\Manager\ProjectManager
-  happyr.user.project.secure_project_manager.class: HappyR\UserProjectBundle\Manager\SecureProjectManager
-  happyr.user.project.project_factory.class: HappyR\UserProjectBundle\Factory\ProjectFactory
-  happyr.user.project.project_service.class: HappyR\UserProjectBundle\Services\ProjectService
-  happyr.user.project.security_manager.class: HappyR\UserProjectBundle\Manager\SecurityManager
+  happyr.normal_distirbution.normal_distirbution_service.class: HappyR\NormalDistributionBundle\Services\NormalDistributionService
 
 services:
-  happyr.user.project.permission_manager:
-    class: %happyr.user.project.permission_manager.class%
-    arguments: [@security.acl.provider]
+  happyr.normal_distirbution.normal_distirbution_service:
+    class: %happyr.normal_distirbution.normal_distirbution_service.class%
+    arguments: []
 
-
-  happyr.user.project.project_manager:
-    class: %happyr.user.project.project_manager.class%
-    arguments:
-      - @doctrine.orm.entity_manager
-      - @happyr.user.project.permission_manager
-      - @happyr.user.project.project_factory
-      - @event_dispatcher
-
-  happyr.user.project.secure_project_manager:
-    class: %happyr.user.project.secure_project_manager.class%
-    arguments:
-      - @doctrine.orm.entity_manager
-      - @happyr.user.project.permission_manager
-      - @happyr.user.project.project_factory
-      - @event_dispatcher
-    calls:
-        - [setSecurityManager, [@happyr.user.project.security_manager]]
-
-  happyr.user.project.project_factory:
-    class: %happyr.user.project.project_factory.class%
-    arguments: [@doctrine.orm.entity_manager, @happyr.user.project.permission_manager]
-
-  happyr.user.project.project_service:
-    class: %happyr.user.project.project_service.class%
-    arguments: [@doctrine.orm.entity_manager, @happyr.user.project.project_factory]
-
-  happyr.user.project.security_manager:
-    class: %happyr.user.project.security_manager.class%
-    arguments: [@security.context]
