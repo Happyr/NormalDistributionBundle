@@ -13,6 +13,27 @@ use HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator;
  */
 class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 {
+    public function testCalculateStandardNormalDistribution()
+    {
+        $param=array(4, 2, 1, 5, 8, 1, 7);
+        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('calculateNormalDistribution'));
+        $calculator->expects($this->once())
+            ->method('calculateNormalDistribution')
+            ->with($param)
+            ->will($this->returnValue(array(4, sqrt(8), 7, 7)));
+
+        $result=$calculator->calculateStandardNormalDistribution($param);
+        $this->assertEquals(array(
+                0,
+                -2/sqrt(8),
+                -3/sqrt(8),
+                1/sqrt(8),
+                4/sqrt(8),
+                -3/sqrt(8),
+                3/sqrt(8),
+            ), $result);
+    }
+
 
     public function testCalculateNormalDistribution()
     {
@@ -20,6 +41,30 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 
         $result=$calculator->dummyNormalDistribution(array(4, 2, 1, 5, 8, 1, 7));
         $this->assertEquals(array(4, sqrt(8), 7, 7), $result);
+    }
+
+    public function testSmallCalculateNormalDistribution()
+    {
+        $param=array(4);
+        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator->expects($this->once())
+            ->method('tooSmallPopulation')
+            ->with($param, count($param))
+            ->will($this->returnValue(4711));
+
+        $result=$calculator->calculateNormalDistribution($param);
+        $this->assertEquals(4711, $result);
+
+
+        $param=array();
+        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator->expects($this->once())
+            ->method('tooSmallPopulation')
+            ->with($param, count($param))
+            ->will($this->returnValue(4711));
+
+        $result=$calculator->calculateNormalDistribution($param);
+        $this->assertEquals(4711, $result);
     }
 
     public function testGetMeanValue()
@@ -31,6 +76,9 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 
         $result=$calculator->dummyMeanValue(array(5,5,5));
         $this->assertEquals(array(5,0,3), $result);
+
+        $result=$calculator->dummyMeanValue(array());
+        $this->assertEquals(array(0,0,0), $result);
     }
 
 
