@@ -3,6 +3,7 @@
 namespace HappyR\NormalDistributionBundle\Services;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\NoResultException;
 use HappyR\NormalDistributionBundle\Entity\Fragment;
 use HappyR\NormalDistributionBundle\Entity\Summary;
 
@@ -83,6 +84,7 @@ class DistributionService
         $qb=$this->em->createQueryBuilder();
 
         $qb->select('f')
+            ->addSelect('s.population')
             ->from('HappyRNormalDistributionBundle:Fragment', 'f')
             ->join('f.summary', 's')
             ->where('s.name = :name')
@@ -93,19 +95,27 @@ class DistributionService
 
         $qb2 = clone $qb;
 
-        $qb ->addSelect('s.population')
-            ->andWhere('f.value <= :value')
+        $qb->andWhere('f.value <= :value')
             ->orderBy('f.value', 'DESC');
 
         $qb2->andWhere('f.value > :value')
             ->orderBy('f.value', 'ASC');
 
+        try{
+            $result=$qb->getQuery()->getSingleResult();
+            $lowerFragment=$result[0];
+            $max=$result['population'];
+        } catch (NoResultException $e) {
+            $lowerFragment = null;
+        }
 
-        $result=$qb->getQuery()->getSingleResult();
-
-        $max=$result['population'];
-        $lowerFragment=$result[0];
-        $upperFragment=$qb2->getQuery()->getSingleResult();
+        try{
+            $result=$qb2->getQuery()->getSingleResult();
+            $upperFragment=$result[0];
+            $max=$result['population'];
+        } catch (NoResultException $e) {
+            $upperFragment = null;
+        }
 
         return array($max, $lowerFragment, $upperFragment);
     }
