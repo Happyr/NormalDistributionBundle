@@ -40,7 +40,7 @@ class DistributionService
      * @param string $name
      * @param float $value
      *
-     * @return int [1,99]
+     * @return int [1,100]
      */
     public function getPercentile($name, $value)
     {
@@ -52,7 +52,7 @@ class DistributionService
         if ($lower==null) {
             return 1;
         } elseif ($upper==null) {
-            return 99;
+            return 100;
         }
 
         /*
@@ -66,9 +66,7 @@ class DistributionService
 
         $x=$x0+($x1-$x0)*($value-$y0)/($y1-$y0);
 
-        $percentile=round($x/$max);
-
-        return $percentile;
+        return ceil(100*$x/$population);
     }
 
     /**
@@ -96,16 +94,16 @@ class DistributionService
         $qb2 = clone $qb;
 
         $qb ->addSelect('s.population')
-            ->andWhere('f.value < :value')
+            ->andWhere('f.value <= :value')
             ->orderBy('f.value', 'DESC');
 
         $qb2->andWhere('f.value > :value')
             ->orderBy('f.value', 'ASC');
 
 
-        $result=$qb->getQuery()->getResult();
+        $result=$qb->getQuery()->getSingleResult();
 
-        $max=$result[1];
+        $max=$result['population'];
         $lowerFragment=$result[0];
         $upperFragment=$qb2->getQuery()->getSingleResult();
 
@@ -120,7 +118,7 @@ class DistributionService
      * @param boolean $overwrite if true we overwrite a previous distribution with the same name
      *
      */
-    public function addDistribution($name, array $values, $overwrite=fales)
+    public function addDistribution($name, array $values, $overwrite=false)
     {
         $fragments=array();
         $population=0;
@@ -149,7 +147,7 @@ class DistributionService
 
             $fragment
                 ->setCumulativeFrequency($population)
-                ->setCumulativeFrequency($frequency)
+                ->setFrequency($frequency)
                 ->setValue($value);
 
             $this->em->persist($fragment);

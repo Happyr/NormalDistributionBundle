@@ -19,7 +19,7 @@ class StatisticsService
      * @param float $meanValue
      * @param float $standardDeviation
      *
-     * @return float [0, 1]
+     * @return int [0,100]
      */
     public function getPercentile($value, $meanValue = 0, $standardDeviation = 1)
     {
@@ -37,14 +37,16 @@ class StatisticsService
         if ($z >= 0.0) {
             $t = 1.0 / (1.0 + $p * $z);
 
-            return (1.0 - $c * exp(-$z * $z / 2.0) * $t *
+            $percentile= (1.0 - $c * exp(-$z * $z / 2.0) * $t *
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         } else {
             $t = 1.0 / (1.0 - $p * $z);
 
-            return ($c * exp(-$z * $z / 2.0) * $t *
+            $percentile= ($c * exp(-$z * $z / 2.0) * $t *
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
+
+        return ceil($percentile*100);
     }
 
     /**
