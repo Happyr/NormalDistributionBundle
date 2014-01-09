@@ -29,7 +29,7 @@ class DistributionService
     /**
      * @param ObjectManager $em
      */
-    function __construct(EntityManager $em)
+    public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }
@@ -101,7 +101,7 @@ class DistributionService
         $qb2->andWhere('f.value > :value')
             ->orderBy('f.value', 'ASC');
 
-        try{
+        try {
             $result=$qb->getQuery()->getSingleResult();
             $lowerFragment=$result[0];
             $max=$result['population'];
@@ -109,7 +109,7 @@ class DistributionService
             $lowerFragment = null;
         }
 
-        try{
+        try {
             $result=$qb2->getQuery()->getSingleResult();
             $upperFragment=$result[0];
             $max=$result['population'];
@@ -147,11 +147,11 @@ class DistributionService
         //sort the values
         ksort($values);
 
-        foreach ($values as $value=>$frequency) {
+        foreach ($values as $value => $frequency) {
             $population+=$frequency;
 
             //get an existing fragment if you can
-            if(null === $fragment=array_shift($fragments)) {
+            if (null === $fragment=array_shift($fragments)) {
                 $fragment=new Fragment($summary);
             }
 

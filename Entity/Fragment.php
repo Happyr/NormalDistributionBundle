@@ -57,7 +57,7 @@ class Fragment
     /**
      * @param Summary $summary
      */
-    function __construct(Summary $summary)
+    public function __construct(Summary $summary)
     {
         $this->summary = $summary;
     }

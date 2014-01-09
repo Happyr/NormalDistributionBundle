@@ -88,11 +88,11 @@ class DistributionServiceTest extends \PHPUnit_Framework_TestCase
             27=>1,
         );
 
-        $this->assertEquals($result,$service->createValueFrequencyArray($param));
+        $this->assertEquals($result, $service->createValueFrequencyArray($param));
 
         //empty test
         $param=array();
-        $this->assertEquals(array(),$service->createValueFrequencyArray($param));
+        $this->assertEquals(array(), $service->createValueFrequencyArray($param));
 
 
     }

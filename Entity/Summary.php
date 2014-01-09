@@ -43,7 +43,7 @@ class Summary
      * @param string $name
      * @param int $population
      */
-    function __construct($name, $population=0)
+    public function __construct($name, $population=0)
     {
         $this->name = $name;
         $this->population = $population;
