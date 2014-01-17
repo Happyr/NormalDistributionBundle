@@ -96,7 +96,7 @@ class StatisticsService
      *
      * @return int [1,9]
      */
-    public function getStanineForProcentile($percentile)
+    public function getStanineForPercentile($percentile)
     {
         //an array with boundaries. These must be in ascending order
         $limits = array(4, 11, 23, 40, 60, 77, 89, 96);
