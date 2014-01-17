@@ -92,7 +92,7 @@ class StatisticsService
      * Return the stanine slot for given percentage
      * http://en.wikipedia.org/wiki/Stanine
      *
-     * @param float $percentile
+     * @param float $percentile [0-100]
      *
      * @return int [1,9]
      */
