@@ -1,54 +1,8 @@
 # HappyR Normal Distribution Bundle
 
-A bundle to calculate normal distribution and other related stuff
+A bundle to calculate distributions and some statistical important values with those distributions.
 
-##Installation
-
-### Step 1: Using Composer
-
-Install it with Composer!
-
-```js
-// composer.json
-{
-    // ...
-    require: {
-        // ...
-        "happyr/normal-distribution-bundle": "dev-master",
-    }
-}
-```
-
-Then, you can install the new dependencies by running Composer's ``update``
-command from the directory where your ``composer.json`` file is located:
-
-```bash
-$ php composer.phar update
-```
-
-### Step 2: Register the bundle
-
- To register the bundles with your kernel:
-
-```php
-<?php
-
-// in AppKernel::registerBundles()
-$bundles = array(
-    // ...
-    new HappyR\NormalDistributionBundle\HappyRNormalDistributionBundle(),
-    // ...
-);
-```
-
-### Step 3: Update the database
-
-The bundle contains two entities. You should update your database with a migration script or (if you are in a
-pure dev environment) run the following command:
-
-```bash
-php app:console doctrine:schema:update --force
-```
+The bundle has 64% test coverage.
 
 ## The API
 
@@ -118,3 +72,51 @@ may use ```getZTransform```. Use ```getStanine``` to get the stanine value for a
 
 The last function of this class returns the stanine value for a given percentile. This is useful when your distribution
 isn't a standard distribution. Use DistributionService->getPercentile() and then StatisticsService->getStanineForPercentile()
+
+##Installation
+
+### Step 1: Using Composer
+
+Install it with Composer!
+
+```js
+// composer.json
+{
+    // ...
+    require: {
+        // ...
+        "happyr/normal-distribution-bundle": "dev-master",
+    }
+}
+```
+
+Then, you can install the new dependencies by running Composer's ``update``
+command from the directory where your ``composer.json`` file is located:
+
+```bash
+$ php composer.phar update
+```
+
+### Step 2: Register the bundle
+
+ To register the bundles with your kernel:
+
+```php
+<?php
+
+// in AppKernel::registerBundles()
+$bundles = array(
+    // ...
+    new HappyR\NormalDistributionBundle\HappyRNormalDistributionBundle(),
+    // ...
+);
+```
+
+### Step 3: Update the database
+
+The bundle contains two entities. You should update your database with a migration script or (if you are in a
+pure dev environment) run the following command:
+
+```bash
+php app:console doctrine:schema:update --force
+```
