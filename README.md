@@ -22,7 +22,7 @@ The input to both functions is an array with values like array(3,6,2,6,4,2,3,6,8
 This service calculates a distribution of any type and saves some data in the database. The public functions to
 this service are ```addDistribution```, ```getPercentile``` and ```createValueFrequencyArray```.
 
-**Add distribution** takes an identifier name and an array with the values an frequency as arguments. The array must
+*addDistribution* takes an identifier name and an array with the values and frequency as arguments. The array must
 be on the form ($value => $frequency). See example below.
 
 ```php
