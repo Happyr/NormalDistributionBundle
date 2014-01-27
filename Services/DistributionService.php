@@ -127,6 +127,7 @@ class DistributionService
      * @param array &$values must be of form array($value=>$frequency)
      * @param boolean $overwrite if true we overwrite a previous distribution with the same name
      *
+     * @return Summary
      */
     public function addDistribution($name, array $values, $overwrite=false)
     {
@@ -172,6 +173,8 @@ class DistributionService
         $this->em->persist($summary);
 
         $this->em->flush();
+
+        return $summary;
     }
 
     /**
