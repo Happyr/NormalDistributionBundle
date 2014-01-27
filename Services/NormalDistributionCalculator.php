@@ -7,7 +7,7 @@ namespace HappyR\NormalDistributionBundle\Services;
  *
  * @author Tobias Nyholm
  *
- * Calculate the normal distrbution for a set of values.
+ * Calculate the normal distribution for a set of values.
  */
 class NormalDistributionCalculator
 {
@@ -34,7 +34,7 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Calculate the normal distibution of an array
+     * Calculate the normal distribution of an array
      *
      * @param array &$values
      *
@@ -48,7 +48,7 @@ class NormalDistributionCalculator
             return $this->tooSmallPopulation($values, $populationCount);
         }
 
-        //we want to sum the squars of the diff for the mean value
+        //we want to sum the squares of the diff for the mean value
         $sum=0;
         foreach ($values as $v) {
             $sum+=pow($meanValue-$v, 2);

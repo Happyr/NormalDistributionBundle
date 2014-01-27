@@ -13,7 +13,7 @@ namespace HappyR\NormalDistributionBundle\Services;
 class StatisticsService
 {
     /**
-     * Get the procentile for a curtan value
+     * Get the percentile for a curtain value
      *
      * @param float $value
      * @param float $meanValue
@@ -33,7 +33,7 @@ class StatisticsService
         $p = 0.2316419;
         $c = 0.39894228;
 
-        /* I choose not to comment this becasue I want to give future me an headache. //Tobias */
+        /* I choose not to comment this because I want to give future me an headache. //Tobias */
         if ($z >= 0.0) {
             $t = 1.0 / (1.0 + $p * $z);
 
@@ -50,7 +50,7 @@ class StatisticsService
     }
 
     /**
-     * This will return the corresponding value in a standard normal distibution
+     * This will return the corresponding value in a standard normal distribution
      *
      * @param float $value
      * @param float $meanValue

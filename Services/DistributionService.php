@@ -15,7 +15,7 @@ use HappyR\NormalDistributionBundle\Entity\Summary;
  * This class handles distributions. It does not have to be a normal distribution.
  * Use this class when you have a normal distribution with an interval. Say that there are only
  * some values that are valid. Add the distribution to this service and we can give you the
- * correct procentile back.
+ * correct percentile back.
  *
  */
 class DistributionService
@@ -35,7 +35,7 @@ class DistributionService
     }
 
     /**
-     * Get the procentile for a distribution
+     * Get the percentile for a distribution
      *
      *
      * @param string $name
