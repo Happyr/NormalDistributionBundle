@@ -104,7 +104,7 @@ class DistributionService
         try {
             $result=$qb->getQuery()->getSingleResult();
             $lowerFragment=$result[0];
-            $max=$result['population'];
+            $population=$result['population'];
         } catch (NoResultException $e) {
             $lowerFragment = null;
         }
@@ -112,12 +112,16 @@ class DistributionService
         try {
             $result=$qb2->getQuery()->getSingleResult();
             $upperFragment=$result[0];
-            $max=$result['population'];
+            $population=$result['population'];
         } catch (NoResultException $e) {
             $upperFragment = null;
         }
 
-        return array($max, $lowerFragment, $upperFragment);
+        if (!isset($population)) {
+            throw new \InvalidArgumentException(sprintf('We could not find any distribution with name "%s"', $name));
+        }
+
+        return array($population, $lowerFragment, $upperFragment);
     }
 
     /**
