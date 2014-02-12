@@ -3,6 +3,7 @@
 
 namespace HappyR\NormalDistributionBundle\Tests\Services;
 
+use Doctrine\ORM\NoResultException;
 use HappyR\NormalDistributionBundle\Entity\Fragment;
 use HappyR\NormalDistributionBundle\Entity\Summary;
 use HappyR\NormalDistributionBundle\Services\DistributionService;
@@ -95,5 +96,133 @@ class DistributionServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $service->createValueFrequencyArray($param));
 
 
+    }
+
+    public function testSortValues()
+    {
+        $service=new DummyDistributionService();
+
+        $input=array(
+            4=>'B',
+            3=>'O',
+            5=>'A',
+            1=>'F',
+            9=>'R',
+            2=>'O',
+        );
+
+        $expected=array(
+            1=>'F',
+            2=>'O',
+            3=>'O',
+            4=>'B',
+            5=>'A',
+            9=>'R',
+        );
+
+        $service->sortValues($input);
+        $this->assertEquals($expected, $input);
+
+        $input=array(
+        0=>'B',
+        -3=>'O',
+        5=>'A',
+        -31=>'F',
+        9=>'R',
+        -10=>'O',
+    );
+
+        $expected=array(
+            -31=>'F',
+            -10=>'O',
+            -3=>'O',
+            0=>'B',
+            5=>'A',
+            9=>'R',
+        );
+
+        $service->sortValues($input);
+        $this->assertEquals($expected, $input, 'Sort with negative keys');
+
+
+    }
+
+    /**
+     * Try to sort with strings as keys
+     */
+    public function testSortValuesWithStrings()
+    {
+        $service=new DummyDistributionService();
+
+        $input=array(
+            '0'=>'B',
+            '-3'=>'O',
+            '5'=>'A',
+            '-31'=>'F',
+            '9'=>'R',
+            '-10'=>'O',
+        );
+
+        $expected=array(
+            '-31'=>'F',
+            '-10'=>'O',
+            '-3'=>'O',
+            '0'=>'B',
+            '5'=>'A',
+            '9'=>'R',
+        );
+
+        $service->sortValues($input);
+        $this->assertEquals($expected, $input, 'Sort with negative values with strings as keys');
+    }
+
+    /**
+     * Try to sort with strings as keys
+     */
+    public function testSortValuesWithFloats()
+    {
+        $service=new DummyDistributionService();
+
+        $input=array(
+            '0.6'=>'B',
+            '0.01'=>'O',
+            '1.1'=>'A',
+            '0.0'=>'F',
+            '2'=>'R',
+            '0.512'=>'O',
+        );
+
+        $expected=array(
+            '0.0'=>'F',
+            '0.01'=>'O',
+            '0.512'=>'O',
+            '0.6'=>'B',
+            '1.1'=>'A',
+            '2'=>'R',
+        );
+
+        $service->sortValues($input);
+        $this->assertEquals($expected, $input, 'Sort with float as keys');
+    }
+}
+
+class DummyDistributionService extends DistributionService
+{
+
+    function __construct($entityManager=null)
+    {
+        if ($entityManager) {
+           parent::__construct($entityManager);
+        }
+    }
+
+    public function getFragments($name, $value)
+    {
+        return parent::getFragments($name, $value);
+    }
+
+    public function sortValues(array &$values)
+    {
+        parent::sortValues($values);
     }
 }

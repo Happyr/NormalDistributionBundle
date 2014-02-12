@@ -149,8 +149,9 @@ class DistributionService
             $fragments=$this->em->getRepository('HappyRNormalDistributionBundle:Fragment')->findBy(array('summary'=>$summary->getId()));
         }
 
+
         //sort the values
-        ksort($values);
+        $this->sortValues($values);
 
         foreach ($values as $value => $frequency) {
             $population+=$frequency;
@@ -201,5 +202,16 @@ class DistributionService
         }
 
         return $result;
+    }
+
+    /**
+     * Sort the values
+     *
+     * @param array $values
+     *
+     */
+    protected function sortValues(array &$values)
+    {
+        ksort($values);
     }
 }
