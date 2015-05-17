@@ -1,4 +1,5 @@
 # Happyr Normal Distribution Bundle
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d/mini.png)](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d)
 
 A bundle to calculate distributions and some statistical important values with those distributions.
 
