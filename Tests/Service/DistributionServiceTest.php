@@ -1,8 +1,7 @@
 <?php
 
-namespace Happyr\NormalDistributionBundle\Tests\Services;
+namespace Happyr\NormalDistributionBundle\Tests\Service;
 
-use Happyr\NormalDistributionBundle\Entity\Fragment;
 use Happyr\NormalDistributionBundle\Service\DistributionService;
 
 /**

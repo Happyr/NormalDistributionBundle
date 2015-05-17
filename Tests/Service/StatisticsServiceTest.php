@@ -1,6 +1,6 @@
 <?php
 
-namespace Happyr\NormalDistributionBundle\Tests\Services;
+namespace Happyr\NormalDistributionBundle\Tests\Service;
 
 use Happyr\NormalDistributionBundle\Service\StatisticsService;
 
