@@ -1,9 +1,9 @@
 <?php
 
 
-namespace HappyR\NormalDistributionBundle\Tests\Services;
+namespace Happyr\NormalDistributionBundle\Tests\Services;
 
-use HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator;
+use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
 
 /**
  * Class NormalDistributionServiceTest
@@ -16,7 +16,7 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     public function testCalculateStandardNormalDistribution()
     {
         $param=array(4, 2, 1, 5, 8, 1, 7);
-        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('calculateNormalDistribution'));
+        $calculator=$this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('calculateNormalDistribution'));
         $calculator->expects($this->once())
             ->method('calculateNormalDistribution')
             ->with($param)
@@ -46,7 +46,7 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     public function testSmallCalculateNormalDistribution()
     {
         $param=array(4);
-        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator=$this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('tooSmallPopulation'));
         $calculator->expects($this->once())
             ->method('tooSmallPopulation')
             ->with($param, count($param))
@@ -56,7 +56,7 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(4711, $result);
 
         $param=array();
-        $calculator=$this->getMock('HappyR\NormalDistributionBundle\Services\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator=$this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('tooSmallPopulation'));
         $calculator->expects($this->once())
             ->method('tooSmallPopulation')
             ->with($param, count($param))

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HappyR\NormalDistributionBundle\Entity;
+namespace Happyr\NormalDistributionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

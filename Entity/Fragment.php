@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HappyR\NormalDistributionBundle\Entity;
+namespace Happyr\NormalDistributionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -29,7 +29,7 @@ class Fragment
     /**
      * @var Summary summary
      *
-     * @ORM\ManyToOne(targetEntity="HappyR\NormalDistributionBundle\Entity\Summary")
+     * @ORM\ManyToOne(targetEntity="Happyr\NormalDistributionBundle\Entity\Summary")
      */
     protected $summary;
 
@@ -117,7 +117,7 @@ class Fragment
 
     /**
      *
-     * @param \HappyR\NormalDistributionBundle\Entity\Summary $summary
+     * @param \Happyr\NormalDistributionBundle\Entity\Summary $summary
      *
      * @return $this
      */
@@ -130,7 +130,7 @@ class Fragment
 
     /**
      *
-     * @return \HappyR\NormalDistributionBundle\Entity\Summary
+     * @return \Happyr\NormalDistributionBundle\Entity\Summary
      */
     public function getSummary()
     {

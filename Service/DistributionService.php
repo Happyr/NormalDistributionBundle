@@ -1,11 +1,11 @@
 <?php
 
-namespace HappyR\NormalDistributionBundle\Services;
+namespace Happyr\NormalDistributionBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
-use HappyR\NormalDistributionBundle\Entity\Fragment;
-use HappyR\NormalDistributionBundle\Entity\Summary;
+use Happyr\NormalDistributionBundle\Entity\Fragment;
+use Happyr\NormalDistributionBundle\Entity\Summary;
 
 /**
  * Class DistributionService
@@ -45,8 +45,8 @@ class DistributionService
      */
     public function getPercentile($name, $value)
     {
-        /* @var $lower \HappyR\NormalDistributionBundle\Entity\Fragment */
-        /* @var $upper \HappyR\NormalDistributionBundle\Entity\Fragment */
+        /* @var $lower \Happyr\NormalDistributionBundle\Entity\Fragment */
+        /* @var $upper \Happyr\NormalDistributionBundle\Entity\Fragment */
         list($population, $lower, $upper)=$this->getFragments($name, $value);
 
         //make sure we have upper and lower limits

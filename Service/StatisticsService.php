@@ -1,6 +1,6 @@
 <?php
 
-namespace HappyR\NormalDistributionBundle\Services;
+namespace Happyr\NormalDistributionBundle\Service;
 
 /**
  * Class StatisticsService

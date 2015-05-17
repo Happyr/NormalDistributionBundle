@@ -1,9 +1,9 @@
 <?php
 
 
-namespace HappyR\NormalDistributionBundle\Tests\Services;
+namespace Happyr\NormalDistributionBundle\Tests\Services;
 
-use HappyR\NormalDistributionBundle\Services\StatisticsService;
+use Happyr\NormalDistributionBundle\Service\StatisticsService;
 
 /**
  * Class StatisticsServiceTest

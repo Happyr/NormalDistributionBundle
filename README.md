@@ -107,7 +107,7 @@ $ php composer.phar update
 // in AppKernel::registerBundles()
 $bundles = array(
     // ...
-    new HappyR\NormalDistributionBundle\HappyRNormalDistributionBundle(),
+    new Happyr\NormalDistributionBundle\HappyRNormalDistributionBundle(),
     // ...
 );
 ```

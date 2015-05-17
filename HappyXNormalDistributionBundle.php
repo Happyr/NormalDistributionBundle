@@ -1,6 +1,6 @@
 <?php
 
-namespace HappyR\NormalDistributionBundle;
+namespace Happyr\NormalDistributionBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -11,6 +11,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  *
  */
-class HappyRNormalDistributionBundle extends Bundle
+class HappyrNormalDistributionBundle extends Bundle
 {
 }

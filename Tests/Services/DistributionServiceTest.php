@@ -1,12 +1,12 @@
 <?php
 
 
-namespace HappyR\NormalDistributionBundle\Tests\Services;
+namespace Happyr\NormalDistributionBundle\Tests\Services;
 
 use Doctrine\ORM\NoResultException;
-use HappyR\NormalDistributionBundle\Entity\Fragment;
-use HappyR\NormalDistributionBundle\Entity\Summary;
-use HappyR\NormalDistributionBundle\Services\DistributionService;
+use Happyr\NormalDistributionBundle\Entity\Fragment;
+use Happyr\NormalDistributionBundle\Entity\Summary;
+use Happyr\NormalDistributionBundle\Service\DistributionService;
 
 /**
  * Class DistributionServiceTest
@@ -22,17 +22,17 @@ class DistributionServiceTest extends \PHPUnit_Framework_TestCase
         $name='test';
         $value=50;
 
-        $lower=$this->getMockBuilder('HappyR\NormalDistributionBundle\Entity\Fragment')
+        $lower=$this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
             ->disableOriginalConstructor()->getMock();
         $lower->expects($this->once())->method('getCumulativeFrequency')->will($this->returnValue(40));
         $lower->expects($this->once())->method('getValue')->will($this->returnValue(12));
 
-        $upper=$this->getMockBuilder('HappyR\NormalDistributionBundle\Entity\Fragment')
-            ->disableOriginalConstructor()->getMock('HappyR\NormalDistributionBundle\Entity\Fragment');
+        $upper=$this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
+            ->disableOriginalConstructor()->getMock('Happyr\NormalDistributionBundle\Entity\Fragment');
         $upper->expects($this->once())->method('getCumulativeFrequency')->will($this->returnValue(55));
         $upper->expects($this->once())->method('getValue')->will($this->returnValue(60));
 
-        $service=$this->getMock('HappyR\NormalDistributionBundle\Services\DistributionService', array('getFragments'), array(), '', false);
+        $service=$this->getMock('Happyr\NormalDistributionBundle\Service\DistributionService', array('getFragments'), array(), '', false);
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
@@ -50,10 +50,10 @@ class DistributionServiceTest extends \PHPUnit_Framework_TestCase
         $name='test';
         $value=50;
 
-        $fragment=$this->getMockBuilder('HappyR\NormalDistributionBundle\Entity\Fragment')
+        $fragment=$this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
             ->disableOriginalConstructor()->getMock();
 
-        $service=$this->getMock('HappyR\NormalDistributionBundle\Services\DistributionService', array('getFragments'), array(), '', false);
+        $service=$this->getMock('Happyr\NormalDistributionBundle\Service\DistributionService', array('getFragments'), array(), '', false);
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
@@ -62,7 +62,7 @@ class DistributionServiceTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(100, $service->getPercentile($name, $value));
 
 
-        $service=$this->getMock('HappyR\NormalDistributionBundle\Services\DistributionService', array('getFragments'), array(), '', false);
+        $service=$this->getMock('Happyr\NormalDistributionBundle\Service\DistributionService', array('getFragments'), array(), '', false);
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
