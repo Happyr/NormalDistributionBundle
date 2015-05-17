@@ -29,12 +29,8 @@ be on the form ($value => $frequency). See example below.
 
 namespace Acme\DemoBundle\Controller;
 
-/* ... */
-
 class DemoController
 {
-    /* ... */
-
     public function testController()
     {
         $distributionService = $this->get('happyr.normal_distribution.distribution_service');
@@ -66,7 +62,7 @@ class DemoController
 ### Statistics Service
 
 The statistics service is made for get values from an existing normal distribution. You may fetch the percentile for a
-value with ```getPercentile```. If you what to do a z-transform to get the value in a standard normal distribution you
+value with ```getPercentile```. If you want to do a z-transform to get the value in a standard normal distribution you
 may use ```getZTransform```. Use ```getStanine``` to get the stanine value for a value in the normal distribution.
 
 The last function of this class returns the stanine value for a given percentile. This is useful when your distribution
