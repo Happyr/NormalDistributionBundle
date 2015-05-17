@@ -3,17 +3,16 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
- * Class StatisticsService
+ * Class StatisticsService.
  *
  * @author Tobias Nyholm
  *
  * Get some values from a already calculated normal distribution
- *
  */
 class StatisticsService
 {
     /**
-     * Get the percentile for a curtain value
+     * Get the percentile for a curtain value.
      *
      * @param float $value
      * @param float $meanValue
@@ -37,12 +36,12 @@ class StatisticsService
         if ($z >= 0.0) {
             $t = 1.0 / (1.0 + $p * $z);
 
-            $percentile= (1.0 - $c * exp(-$z * $z / 2.0) * $t *
+            $percentile = (1.0 - $c * exp(-$z * $z / 2.0) * $t *
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         } else {
             $t = 1.0 / (1.0 - $p * $z);
 
-            $percentile= ($c * exp(-$z * $z / 2.0) * $t *
+            $percentile = ($c * exp(-$z * $z / 2.0) * $t *
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
 
@@ -50,7 +49,7 @@ class StatisticsService
     }
 
     /**
-     * This will return the corresponding value in a standard normal distribution
+     * This will return the corresponding value in a standard normal distribution.
      *
      * @param float $value
      * @param float $meanValue
@@ -65,7 +64,7 @@ class StatisticsService
 
     /**
      * Get the stanine value
-     * http://en.wikipedia.org/wiki/Stanine
+     * http://en.wikipedia.org/wiki/Stanine.
      *
      * @param float $value
      * @param float $meanValue
@@ -90,7 +89,7 @@ class StatisticsService
 
     /**
      * Return the stanine slot for given percentage
-     * http://en.wikipedia.org/wiki/Stanine
+     * http://en.wikipedia.org/wiki/Stanine.
      *
      * @param float $percentile [0-100]
      *

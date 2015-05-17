@@ -1,21 +1,19 @@
 <?php
 
-
 namespace Happyr\NormalDistributionBundle\Tests\Services;
 
 use Happyr\NormalDistributionBundle\Service\StatisticsService;
 
 /**
- * Class StatisticsServiceTest
+ * Class StatisticsServiceTest.
  *
  * @author Tobias Nyholm
- *
  */
 class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetPercentile()
     {
-        $service=new StatisticsService();
+        $service = new StatisticsService();
 
         //Yes, this is a weird test.. I compared the values from http://stattrek.com/online-calculator/normal.aspx
         $this->assertEquals(79, $service->getPercentile(0.8));
@@ -27,9 +25,9 @@ class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
 
     public function testGetStanine()
     {
-        $service=new StatisticsService();
+        $service = new StatisticsService();
 
-        for ($i=1; $i<=9; $i++) {
+        for ($i = 1; $i <= 9; $i++) {
             $this->assertEquals($i, $service->getStanine(12+$i, 17, 2));
         }
     }

@@ -8,7 +8,7 @@ use Happyr\NormalDistributionBundle\Entity\Fragment;
 use Happyr\NormalDistributionBundle\Entity\Summary;
 
 /**
- * Class DistributionService
+ * Class DistributionService.
  *
  * @author Tobias Nyholm
  *
@@ -16,13 +16,11 @@ use Happyr\NormalDistributionBundle\Entity\Summary;
  * Use this class when you have a normal distribution with an interval. Say that there are only
  * some values that are valid. Add the distribution to this service and we can give you the
  * correct percentile back.
- *
  */
 class DistributionService
 {
     /**
      * @var \Doctrine\ORM\EntityManager em
-     *
      */
     protected $em;
 
@@ -35,11 +33,11 @@ class DistributionService
     }
 
     /**
-     * Get the percentile for a distribution
+     * Get the percentile for a distribution.
      *
      *
      * @param string $name
-     * @param float $value
+     * @param float  $value
      *
      * @return int [1,100]
      */
@@ -47,31 +45,31 @@ class DistributionService
     {
         /* @var $lower \Happyr\NormalDistributionBundle\Entity\Fragment */
         /* @var $upper \Happyr\NormalDistributionBundle\Entity\Fragment */
-        list($population, $lower, $upper)=$this->getFragments($name, $value);
+        list($population, $lower, $upper) = $this->getFragments($name, $value);
 
         //make sure we have upper and lower limits
-        if ($lower==null) {
+        if ($lower === null) {
             return 1;
-        } elseif ($upper==null) {
+        } elseif ($upper === null) {
             return 100;
         }
 
         /*
          * Make an linear interpolation between $upper and $lower to get the percentile
          */
-        $x0=$lower->getCumulativeFrequency();
-        $y0=$lower->getValue();
-        $x1=$upper->getCumulativeFrequency();
-        $y1=$upper->getValue();
+        $x0 = $lower->getCumulativeFrequency();
+        $y0 = $lower->getValue();
+        $x1 = $upper->getCumulativeFrequency();
+        $y1 = $upper->getValue();
         //$y=$value
 
-        $x=$x0+($x1-$x0)*($value-$y0)/($y1-$y0);
+        $x = $x0+($x1-$x0)*($value-$y0)/($y1-$y0);
 
         return ceil(100*$x/$population);
     }
 
     /**
-     * Get the fragments that are around the value
+     * Get the fragments that are around the value.
      *
      * @param $name
      * @param $value
@@ -81,17 +79,16 @@ class DistributionService
     protected function getFragments($name, $value)
     {
         /* @var $qb \Doctrine\ORM\QueryBuilder */
-        $qb=$this->em->createQueryBuilder();
+        $qb = $this->em->createQueryBuilder();
 
         $qb->select('f')
             ->addSelect('s.population')
-            ->from('HappyRNormalDistributionBundle:Fragment', 'f')
+            ->from('HappyrNormalDistributionBundle:Fragment', 'f')
             ->join('f.summary', 's')
             ->where('s.name = :name')
             ->setParameter('name', $name)
             ->setParameter('value', $value)
             ->setMaxResults(1);
-
 
         $qb2 = clone $qb;
 
@@ -102,17 +99,17 @@ class DistributionService
             ->orderBy('f.value', 'ASC');
 
         try {
-            $result=$qb->getQuery()->getSingleResult();
-            $lowerFragment=$result[0];
-            $population=$result['population'];
+            $result = $qb->getQuery()->getSingleResult();
+            $lowerFragment = $result[0];
+            $population = $result['population'];
         } catch (NoResultException $e) {
             $lowerFragment = null;
         }
 
         try {
-            $result=$qb2->getQuery()->getSingleResult();
-            $upperFragment=$result[0];
-            $population=$result['population'];
+            $result = $qb2->getQuery()->getSingleResult();
+            $upperFragment = $result[0];
+            $population = $result['population'];
         } catch (NoResultException $e) {
             $upperFragment = null;
         }
@@ -125,40 +122,39 @@ class DistributionService
     }
 
     /**
-     * Add a distribution
+     * Add a distribution.
      *
-     * @param string $name
-     * @param array &$values must be of form array($value=>$frequency)
+     * @param string  $name
+     * @param array   &$values   must be of form array($value=>$frequency)
      * @param boolean $overwrite if true we overwrite a previous distribution with the same name
      *
      * @return Summary
      */
-    public function addDistribution($name, array $values, $overwrite=false)
+    public function addDistribution($name, array $values, $overwrite = false)
     {
-        $fragments=array();
-        $population=0;
+        $fragments = array();
+        $population = 0;
 
         //check if exists
-        $summary=$this->em->getRepository('HappyRNormalDistributionBundle:Summary')->findOneByName($name);
+        $summary = $this->em->getRepository('HappyrNormalDistributionBundle:Summary')->findOneByName($name);
         if (!$summary) {
-            $summary=new Summary($name);
+            $summary = new Summary($name);
         } elseif (!$overwrite) {
             throw new \Exception(sprintf('A distribution with name "%s" does already exists.', $name));
         } else {
             //if we should overwrite, get all previous distribution entities
-            $fragments=$this->em->getRepository('HappyRNormalDistributionBundle:Fragment')->findBy(array('summary'=>$summary->getId()));
+            $fragments = $this->em->getRepository('HappyrNormalDistributionBundle:Fragment')->findBy(array('summary' => $summary->getId()));
         }
-
 
         //sort the values
         $this->sortValues($values);
 
         foreach ($values as $value => $frequency) {
-            $population+=$frequency;
+            $population += $frequency;
 
             //get an existing fragment if you can
-            if (null === $fragment=array_shift($fragments)) {
-                $fragment=new Fragment($summary);
+            if (null === $fragment = array_shift($fragments)) {
+                $fragment = new Fragment($summary);
             }
 
             $fragment
@@ -191,11 +187,11 @@ class DistributionService
      */
     public function createValueFrequencyArray(array &$values)
     {
-        $result=array();
+        $result = array();
 
         foreach ($values as $v) {
             if (!isset($result[$v])) {
-                $result[$v]=0;
+                $result[$v] = 0;
             }
 
             $result[$v]++;
@@ -205,10 +201,9 @@ class DistributionService
     }
 
     /**
-     * Sort the values
+     * Sort the values.
      *
      * @param array $values
-     *
      */
     protected function sortValues(array &$values)
     {

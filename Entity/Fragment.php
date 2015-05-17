@@ -1,22 +1,19 @@
 <?php
 
-
 namespace Happyr\NormalDistributionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Distribution
+ * Class Distribution.
  *
  * @author Tobias Nyholm
  *
- * @ORM\Table(name="HappyRDistributionFragment")
+ * @ORM\Table(name="HappyrDistributionFragment")
  * @ORM\Entity()
- *
  */
 class Fragment
 {
-
     /**
      * @var integer
      *
@@ -63,7 +60,6 @@ class Fragment
     }
 
     /**
-     *
      * @param int $cumulativeFrequency
      *
      * @return $this
@@ -76,7 +72,6 @@ class Fragment
     }
 
     /**
-     *
      * @return int
      */
     public function getCumulativeFrequency()
@@ -85,7 +80,6 @@ class Fragment
     }
 
     /**
-     *
      * @param int $frequency
      *
      * @return $this
@@ -98,7 +92,6 @@ class Fragment
     }
 
     /**
-     *
      * @return int
      */
     public function getFrequency()
@@ -107,7 +100,6 @@ class Fragment
     }
 
     /**
-     *
      * @return int
      */
     public function getId()
@@ -116,7 +108,6 @@ class Fragment
     }
 
     /**
-     *
      * @param \Happyr\NormalDistributionBundle\Entity\Summary $summary
      *
      * @return $this
@@ -129,7 +120,6 @@ class Fragment
     }
 
     /**
-     *
      * @return \Happyr\NormalDistributionBundle\Entity\Summary
      */
     public function getSummary()
@@ -138,7 +128,6 @@ class Fragment
     }
 
     /**
-     *
      * @param float $value
      *
      * @return $this
@@ -151,7 +140,6 @@ class Fragment
     }
 
     /**
-     *
      * @return float
      */
     public function getValue()

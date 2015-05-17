@@ -1,8 +1,6 @@
-# HappyR Normal Distribution Bundle
+# Happyr Normal Distribution Bundle
 
 A bundle to calculate distributions and some statistical important values with those distributions.
-
-The bundle has 64% test coverage.
 
 ## The API
 
@@ -107,7 +105,7 @@ $ php composer.phar update
 // in AppKernel::registerBundles()
 $bundles = array(
     // ...
-    new Happyr\NormalDistributionBundle\HappyRNormalDistributionBundle(),
+    new Happyr\NormalDistributionBundle\HappyrNormalDistributionBundle(),
     // ...
 );
 ```

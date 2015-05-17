@@ -1,18 +1,16 @@
 <?php
 
-
 namespace Happyr\NormalDistributionBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Summary
+ * Class Summary.
  *
  * @author Tobias Nyholm
  *
- * @ORM\Table(name="HappyRDistributionSummary")
+ * @ORM\Table(name="HappyrDistributionSummary")
  * @ORM\Entity()
- *
  */
 class Summary
 {
@@ -41,16 +39,15 @@ class Summary
 
     /**
      * @param string $name
-     * @param int $population
+     * @param int    $population
      */
-    public function __construct($name, $population=0)
+    public function __construct($name, $population = 0)
     {
         $this->name = $name;
         $this->population = $population;
     }
 
     /**
-     *
      * @return int
      */
     public function getId()
@@ -59,7 +56,6 @@ class Summary
     }
 
     /**
-     *
      * @param string $name
      *
      * @return $this
@@ -72,7 +68,6 @@ class Summary
     }
 
     /**
-     *
      * @return string
      */
     public function getName()
@@ -81,7 +76,6 @@ class Summary
     }
 
     /**
-     *
      * @param int $population
      *
      * @return $this
@@ -94,7 +88,6 @@ class Summary
     }
 
     /**
-     *
      * @return int
      */
     public function getPopulation()

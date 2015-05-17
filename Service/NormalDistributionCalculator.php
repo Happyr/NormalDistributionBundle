@@ -3,7 +3,7 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
- * Class NormalDistributionService
+ * Class NormalDistributionService.
  *
  * @author Tobias Nyholm
  *
@@ -14,7 +14,7 @@ class NormalDistributionCalculator
     /**
      * Calculate the standard normal distribution
      * A standard normal distribution (or the unit normal distribution) is where
-     * mean value=0 and the standard distribution=1
+     * mean value=0 and the standard distribution=1.
      *
      * @param array &$values
      *
@@ -22,10 +22,10 @@ class NormalDistributionCalculator
      */
     public function calculateStandardNormalDistribution(array &$values)
     {
-        list($meanValue, $standardDeviation)=$this->calculateNormalDistribution($values);
+        list($meanValue, $standardDeviation) = $this->calculateNormalDistribution($values);
 
         //calculate z transform values
-        $zValues=array();
+        $zValues = array();
         foreach ($values as $v) {
             $zValues[] = ($v-$meanValue)/$standardDeviation;
         }
@@ -34,7 +34,7 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Calculate the normal distribution of an array
+     * Calculate the normal distribution of an array.
      *
      * @param array &$values
      *
@@ -49,19 +49,19 @@ class NormalDistributionCalculator
         }
 
         //we want to sum the squares of the diff for the mean value
-        $sum=0;
+        $sum = 0;
         foreach ($values as $v) {
-            $sum+=pow($meanValue-$v, 2);
+            $sum += pow($meanValue-$v, 2);
         }
 
         //divide this sum by the populationCount-1 and square root it
-        $standardDeviation=sqrt($sum/($populationCount-1));
+        $standardDeviation = sqrt($sum/($populationCount-1));
 
         return array($meanValue, $standardDeviation, $variance, $populationCount);
     }
 
     /**
-     * Get the mean value
+     * Get the mean value.
      *
      * @param array &$values
      *
@@ -69,25 +69,25 @@ class NormalDistributionCalculator
      */
     protected function getMeanValue(array &$values)
     {
-        $count=count($values);
-        if ($count==0) {
+        $count = count($values);
+        if ($count == 0) {
             return array(0, 0, 0);
         }
 
-        $high=null;
-        $low=null;
-        $sum=0;
+        $high = null;
+        $low = null;
+        $sum = 0;
 
         foreach ($values as $v) {
-            if ($v>$high || $high==null) {
-                $high=$v;
+            if ($v>$high || $high === null) {
+                $high = $v;
             }
 
-            if ($v<$low || $low==null) {
-                $low=$v;
+            if ($v<$low || $low === null) {
+                $low = $v;
             }
 
-            $sum+=$v;
+            $sum += $v;
         }
 
         return array($sum/$count, $high-$low, $count);
@@ -95,16 +95,16 @@ class NormalDistributionCalculator
 
     /**
      * Call this when population count is 0 or 1.
-     * This handles those special cases
+     * This handles those special cases.
      *
      * @param array $values
-     * @param int $populationCount
+     * @param int   $populationCount
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
     protected function tooSmallPopulation(array $values, $populationCount)
     {
-        if ($populationCount==0) {
+        if ($populationCount == 0) {
             return array(0, 0, 0, 0);
         }
 
