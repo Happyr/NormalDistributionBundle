@@ -34,7 +34,7 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Calculate the normal distribution of an array.
+     * Calculate the normal distribution of an array. This will return the "population standard deviation", not the sample standard deviation.
      *
      * @param array &$values
      *
@@ -54,14 +54,14 @@ class NormalDistributionCalculator
             $sum += pow($meanValue-$v, 2);
         }
 
-        //divide this sum by the populationCount-1 and square root it
-        $standardDeviation = sqrt($sum/($populationCount-1));
+        //divide this sum by the populationCount and square root it
+        $standardDeviation = sqrt($sum/($populationCount));
 
         return array($meanValue, $standardDeviation, $variance, $populationCount);
     }
 
     /**
-     * Get the mean value.
+     * Get the mean value of the sample. This will return the "population variance" not the sample variance
      *
      * @param array &$values
      *
@@ -74,23 +74,15 @@ class NormalDistributionCalculator
             return array(0, 0, 0);
         }
 
-        $high = null;
-        $low = null;
-        $sum = 0;
+        $sum = array_sum($values);
+        $mean = $sum / $count;
+        $varianceSum = 0;
 
         foreach ($values as $v) {
-            if ($v>$high || $high === null) {
-                $high = $v;
-            }
-
-            if ($v<$low || $low === null) {
-                $low = $v;
-            }
-
-            $sum += $v;
+            $varianceSum += pow($mean-$v,2);
         }
 
-        return array($sum/$count, $high-$low, $count);
+        return array($mean, $varianceSum/$count, $count);
     }
 
     /**
