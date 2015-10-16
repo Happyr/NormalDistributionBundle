@@ -37,14 +37,15 @@ class NormalDistributionCalculator
      * Calculate the normal distribution of an array. This will return the "population standard deviation", not the sample standard deviation.
      *
      * @param array &$values
+     * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
-    public function calculateNormalDistribution(array &$values)
+    public function calculateNormalDistribution(array &$values, $sample = true)
     {
-        list($meanValue, $variance, $populationCount) = $this->getMeanValue($values);
+        list($meanValue, $variance, $populationCount) = $this->getMeanValue($values, $sample);
 
-        if ($populationCount <= 1) {
+        if ($populationCount <= 2) {
             return $this->tooSmallPopulation($values, $populationCount);
         }
 
@@ -55,7 +56,7 @@ class NormalDistributionCalculator
         }
 
         //divide this sum by the populationCount and square root it
-        $standardDeviation = sqrt($sum/($populationCount));
+        $standardDeviation = sqrt($sum/($populationCount-($sample?1:0)));
 
         return array($meanValue, $standardDeviation, $variance, $populationCount);
     }
@@ -64,14 +65,15 @@ class NormalDistributionCalculator
      * Get the mean value of the sample. This will return the "population variance" not the sample variance
      *
      * @param array &$values
+     * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
-    protected function getMeanValue(array &$values)
+    protected function getMeanValue(array &$values, $sample = true)
     {
         $count = count($values);
-        if ($count == 0) {
-            return array(0, 0, 0);
+        if ($count <= 2) {
+            return array(0, 0, $count);
         }
 
         $sum = array_sum($values);
@@ -82,11 +84,15 @@ class NormalDistributionCalculator
             $varianceSum += pow($mean-$v,2);
         }
 
-        return array($mean, $varianceSum/$count, $count);
+        $div = $sample ? 1 : 0;
+
+        $variance = $varianceSum / ($count - $div);
+
+        return array($mean, $variance, $count);
     }
 
     /**
-     * Call this when population count is 0 or 1.
+     * Call this when population count is 0, 1 or 2.
      * This handles those special cases.
      *
      * @param array $values
@@ -100,6 +106,8 @@ class NormalDistributionCalculator
             return array(0, 0, 0, 0);
         }
 
-        return array(array_shift($values), 0, 0, 1);
+        $sum = array_sum($values);
+
+        return array($sum/$populationCount, 0, 0, 1);
     }
 }

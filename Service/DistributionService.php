@@ -190,11 +190,11 @@ class DistributionService
         $result = array();
 
         foreach ($values as $v) {
-            if (!isset($result[$v])) {
-                $result[$v] = 0;
+            if (!isset($result["$v"])) {
+                $result["$v"] = 0;
             }
 
-            $result[$v]++;
+            $result["$v"]++;
         }
 
         return $result;

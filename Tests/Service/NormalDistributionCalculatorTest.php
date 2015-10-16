@@ -32,20 +32,43 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
             ), $result);
     }
 
-    public function testCalculateNormalDistribution()
+    public function testCalculateNormalDistributionSample()
     {
         $calculator = new NormalDistributionCalculatorDummy();
 
+        // Sample
         $input = array(4, 2, 1, 5, 8, 1, 7);
         list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->dummyNormalDistribution($input);
+        $this->assertEquals(7, $populationCount);
+        $this->assertEquals(8, $variance, '', 0.0001);
+        $this->assertEquals(2.82842, $standardDeviation, '', 0.0001);
+        $this->assertEquals(4, $meanValue);
+
+
+        //Sample
+        $input = array(4,6,3,7,8,2,8,9,5,4,2,6,3,1,3,6,8,9,5,3,4,6,7,8,4);
+        list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->dummyNormalDistribution($input);
+        $this->assertEquals(25, $populationCount);
+        $this->assertEquals(5.52333, $variance, '', 0.0001);
+        $this->assertEquals(2.35017, $standardDeviation, '', 0.0001);
+        $this->assertEquals(5.24, $meanValue);
+    }
+    public function testCalculateNormalDistributionPopulation()
+    {
+        $calculator = new NormalDistributionCalculatorDummy();
+
+        // Population
+        $input = array(4, 2, 1, 5, 8, 1, 7);
+        list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->dummyNormalDistribution($input, false);
         $this->assertEquals(7, $populationCount);
         $this->assertEquals(6.85714, $variance, '', 0.0001);
         $this->assertEquals(2.61861, $standardDeviation, '', 0.0001);
         $this->assertEquals(4, $meanValue);
 
 
+        //Population
         $input = array(4,6,3,7,8,2,8,9,5,4,2,6,3,1,3,6,8,9,5,3,4,6,7,8,4);
-        list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->dummyNormalDistribution($input);
+        list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->dummyNormalDistribution($input, false);
         $this->assertEquals(25, $populationCount);
         $this->assertEquals(5.3024, $variance, '', 0.0001);
         $this->assertEquals(2.30269, $standardDeviation, '', 0.0001);
@@ -79,8 +102,13 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     {
         $calculator = new NormalDistributionCalculatorDummy();
 
-        $result = $calculator->dummyMeanValue(array(2, 5, 8, 4));
+        // population
+        $result = $calculator->dummyMeanValue(array(2, 5, 8, 4), false);
         $this->assertEquals(array(4.75, 4.6875, 4), $result);
+
+        // sample
+        $result = $calculator->dummyMeanValue(array(2, 5, 8, 4), true);
+        $this->assertEquals(array(4.75, 6.25, 4), $result);
 
         $result = $calculator->dummyMeanValue(array(5, 5, 5));
         $this->assertEquals(array(5, 0, 3), $result);
@@ -103,14 +131,14 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 
 class NormalDistributionCalculatorDummy extends NormalDistributionCalculator
 {
-    public function dummyNormalDistribution(array $values)
+    public function dummyNormalDistribution(array $values, $sample=true)
     {
-        return parent::calculateNormalDistribution($values);
+        return parent::calculateNormalDistribution($values, $sample);
     }
 
-    public function dummyMeanValue(array $values)
+    public function dummyMeanValue(array $values, $sample=true)
     {
-        return parent::getMeanValue($values);
+        return parent::getMeanValue($values, $sample);
     }
 
     public function tooSmallPopulation(array $values, $populationCount)
