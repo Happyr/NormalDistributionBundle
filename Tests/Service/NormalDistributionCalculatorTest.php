@@ -7,6 +7,8 @@ use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
 /**
  * Class NormalDistributionServiceTest.
  *
+ * http://www.calculator.net/standard-deviation-calculator.html
+ *
  * @author Tobias Nyholm
  */
 class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
