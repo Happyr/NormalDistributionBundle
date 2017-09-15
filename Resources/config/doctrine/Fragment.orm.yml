@@ -9,9 +9,6 @@ Happyr\NormalDistributionBundle\Entity\Fragment:
         summary:
           targetEntity: Happyr\NormalDistributionBundle\Entity\Summary
     fields:
-        summary:
-            type: string
-            length: 100
         value:
             type: float
         frequency:
