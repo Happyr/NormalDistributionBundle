@@ -24,7 +24,6 @@ class BundleInitializationTest extends BaseBundleTestCase
         $kernel->addBundle(DoctrineBundle::class);
         $kernel->addConfigFile(__DIR__.'/config.yml');
 
-
         // Boot the kernel.
         $this->bootKernel();
 
