@@ -15,7 +15,7 @@ use Happyr\NormalDistributionBundle\Entity\Summary;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-final class DistributionManager
+class DistributionManager
 {
     /**
      * @var EntityManagerInterface em
