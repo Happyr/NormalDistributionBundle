@@ -34,7 +34,7 @@ class NormalDistributionCalculator
     /**
      * Calculate the normal distribution of an array. This will return the "population standard deviation", not the sample standard deviation.
      *
-     * @param array &$values
+     * @param array $values
      * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
@@ -62,12 +62,12 @@ class NormalDistributionCalculator
     /**
      * Get the mean value of the sample. This will return the "population variance" not the sample variance
      *
-     * @param array &$values
+     * @param array $values
      * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
-    private function getMeanValue(array &$values, bool $sample = true): array
+    private function getMeanValue(array $values, bool $sample = true): array
     {
         $count = count($values);
         if ($count <= 2) {
@@ -98,7 +98,7 @@ class NormalDistributionCalculator
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
-    private function tooSmallPopulation(array $values, int $populationCount): array
+    protected function tooSmallPopulation(array $values, int $populationCount): array
     {
         if ($populationCount == 0) {
             return array(0, 0, 0, 0);

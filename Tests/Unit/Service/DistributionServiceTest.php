@@ -76,7 +76,7 @@ class DistributionServiceTest extends TestCase
 
     public function testCreateValueFrequencyArray()
     {
-        $em = $this->getMockBuilder('Doctrine\ORM\EntityManager')
+        $em = $this->getMockBuilder('Doctrine\ORM\EntityManagerInterface')
             ->disableOriginalConstructor()->getMock();
         $service = new DistributionService($em);
 

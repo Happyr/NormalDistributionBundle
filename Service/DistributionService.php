@@ -75,7 +75,7 @@ class DistributionService
      *
      * @return array ($population, $lower, $upper)
      */
-    private function getFragments(string $name, float $value): array
+    protected function getFragments(string $name, float $value): array
     {
         /* @var $qb \Doctrine\ORM\QueryBuilder */
         $qb = $this->em->createQueryBuilder();
