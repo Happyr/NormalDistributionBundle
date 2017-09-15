@@ -22,7 +22,7 @@
         "nyholm/symfony-bundle-test": "^1.2",
         "phpunit/phpunit": "^6.2",
         "nyholm/nsa": "^1.1",
-        "doctrine/doctrine-bundle": "^1.0"
+        "doctrine/doctrine-bundle": "^1.6"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
