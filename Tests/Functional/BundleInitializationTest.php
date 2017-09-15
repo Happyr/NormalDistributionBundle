@@ -27,5 +27,4 @@ class BundleInitializationTest extends BaseBundleTestCase
         $service = $container->get('acme.foo');
         $this->assertInstanceOf(Foo::class, $service);
     }
-
 }

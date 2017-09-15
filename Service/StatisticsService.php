@@ -3,7 +3,7 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
- * Get some values from a already calculated normal distribution
+ * Get some values from a already calculated normal distribution.
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
@@ -43,7 +43,7 @@ class StatisticsService
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
 
-        return ceil($percentile*100);
+        return ceil($percentile * 100);
     }
 
     /**
@@ -96,11 +96,10 @@ class StatisticsService
     public function getStanineForPercentile(float $percentile): int
     {
         //an array with boundaries. These must be in ascending order
-        $limits = array(4, 11, 23, 40, 60, 77, 89, 96);
+        $limits = [4, 11, 23, 40, 60, 77, 89, 96];
 
         //for each limit
         foreach ($limits as $key => $limit) {
-
             //if the percentile is smaller than the limit
             if ($percentile < $limit) {
                 //the slot is $key+1

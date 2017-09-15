@@ -23,9 +23,9 @@ class NormalDistributionCalculator
         list($meanValue, $standardDeviation) = $this->calculateNormalDistribution($values);
 
         //calculate z transform values
-        $zValues = array();
+        $zValues = [];
         foreach ($values as $v) {
-            $zValues[] = ($v-$meanValue)/$standardDeviation;
+            $zValues[] = ($v - $meanValue) / $standardDeviation;
         }
 
         return $zValues;
@@ -35,7 +35,7 @@ class NormalDistributionCalculator
      * Calculate the normal distribution of an array. This will return the "population standard deviation", not the sample standard deviation.
      *
      * @param array $values
-     * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
+     * @param bool  $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
@@ -50,20 +50,20 @@ class NormalDistributionCalculator
         //we want to sum the squares of the diff for the mean value
         $sum = 0;
         foreach ($values as $v) {
-            $sum += pow($meanValue-$v, 2);
+            $sum += pow($meanValue - $v, 2);
         }
 
         //divide this sum by the populationCount and square root it
-        $standardDeviation = sqrt($sum/($populationCount-($sample?1:0)));
+        $standardDeviation = sqrt($sum / ($populationCount - ($sample ? 1 : 0)));
 
-        return array($meanValue, $standardDeviation, $variance, $populationCount);
+        return [$meanValue, $standardDeviation, $variance, $populationCount];
     }
 
     /**
-     * Get the mean value of the sample. This will return the "population variance" not the sample variance
+     * Get the mean value of the sample. This will return the "population variance" not the sample variance.
      *
      * @param array $values
-     * @param bool $sample should we caluclate the mean value of a sample? or the entire population?
+     * @param bool  $sample should we caluclate the mean value of a sample? or the entire population?
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
@@ -71,7 +71,7 @@ class NormalDistributionCalculator
     {
         $count = count($values);
         if ($count <= 2) {
-            return array(0, 0, $count);
+            return [0, 0, $count];
         }
 
         $sum = array_sum($values);
@@ -79,14 +79,14 @@ class NormalDistributionCalculator
         $varianceSum = 0;
 
         foreach ($values as $v) {
-            $varianceSum += pow($mean-$v,2);
+            $varianceSum += pow($mean - $v, 2);
         }
 
         $div = $sample ? 1 : 0;
 
         $variance = $varianceSum / ($count - $div);
 
-        return array($mean, $variance, $count);
+        return [$mean, $variance, $count];
     }
 
     /**
@@ -101,11 +101,11 @@ class NormalDistributionCalculator
     protected function tooSmallPopulation(array $values, int $populationCount): array
     {
         if ($populationCount == 0) {
-            return array(0, 0, 0, 0);
+            return [0, 0, 0, 0];
         }
 
         $sum = array_sum($values);
 
-        return array($sum/$populationCount, 0, 0, 1);
+        return [$sum / $populationCount, 0, 0, 1];
     }
 }

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Summary
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -29,7 +29,7 @@ class Summary
     protected $name;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */

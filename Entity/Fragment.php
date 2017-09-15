@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Fragment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -37,14 +37,14 @@ class Fragment
     protected $value;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */
     protected $frequency;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */

@@ -29,12 +29,12 @@ class DistributionServiceTest extends TestCase
 
         $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
             ->disableOriginalConstructor()
-            ->setMethods(array('getFragments'))
+            ->setMethods(['getFragments'])
             ->getMock();
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
-            ->will($this->returnValue(array(100, $lower, $upper)));
+            ->will($this->returnValue([100, $lower, $upper]));
 
         $percentile = $service->getPercentile($name, $value);
         $this->assertEquals(52, $percentile);
@@ -53,23 +53,23 @@ class DistributionServiceTest extends TestCase
 
         $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
             ->disableOriginalConstructor()
-            ->setMethods(array('getFragments'))
+            ->setMethods(['getFragments'])
             ->getMock();
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
-            ->will($this->returnValue(array(100, $fragment, null)));
+            ->will($this->returnValue([100, $fragment, null]));
 
         $this->assertEquals(100, $service->getPercentile($name, $value));
 
         $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
             ->disableOriginalConstructor()
-            ->setMethods(array('getFragments'))
+            ->setMethods(['getFragments'])
             ->getMock();
         $service->expects($this->once())
             ->method('getFragments')
             ->with($name, $value)
-            ->will($this->returnValue(array(100, null, $fragment)));
+            ->will($this->returnValue([100, null, $fragment]));
 
         $this->assertEquals(1, $service->getPercentile($name, $value));
     }
@@ -80,8 +80,8 @@ class DistributionServiceTest extends TestCase
             ->disableOriginalConstructor()->getMock();
         $service = new DistributionService($em);
 
-        $param = array(2,5,7,2,6,7,3,4,7,27,8,3);
-        $result = array(
+        $param = [2, 5, 7, 2, 6, 7, 3, 4, 7, 27, 8, 3];
+        $result = [
             2 => 2,
             5 => 1,
             7 => 3,
@@ -90,14 +90,12 @@ class DistributionServiceTest extends TestCase
             4 => 1,
             8 => 1,
             27 => 1,
-        );
+        ];
 
         $this->assertEquals($result, $service->createValueFrequencyArray($param));
 
         //empty test
-        $param = array();
-        $this->assertEquals(array(), $service->createValueFrequencyArray($param));
+        $param = [];
+        $this->assertEquals([], $service->createValueFrequencyArray($param));
     }
-
-
 }

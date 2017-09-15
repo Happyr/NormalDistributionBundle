@@ -2,7 +2,6 @@
 
 namespace Happyr\NormalDistributionBundle\Service;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
 use Happyr\NormalDistributionBundle\Entity\Fragment;
@@ -62,9 +61,9 @@ class DistributionService
         $y1 = $upper->getValue();
         //$y=$value
 
-        $x = $x0+($x1-$x0)*($value-$y0)/($y1-$y0);
+        $x = $x0 + ($x1 - $x0) * ($value - $y0) / ($y1 - $y0);
 
-        return ceil(100*$x/$population);
+        return ceil(100 * $x / $population);
     }
 
     /**
@@ -117,21 +116,21 @@ class DistributionService
             throw new \InvalidArgumentException(sprintf('We could not find any distribution with name "%s"', $name));
         }
 
-        return array($population, $lowerFragment, $upperFragment);
+        return [$population, $lowerFragment, $upperFragment];
     }
 
     /**
      * Add a distribution.
      *
-     * @param string  $name
-     * @param array   &$values   must be of form array($value=>$frequency)
-     * @param boolean $overwrite if true we overwrite a previous distribution with the same name
+     * @param string $name
+     * @param array  &$values   must be of form array($value=>$frequency)
+     * @param bool   $overwrite if true we overwrite a previous distribution with the same name
      *
      * @return Summary
      */
     public function addDistribution(string $name, array $values, bool $overwrite = false): Summary
     {
-        $fragments = array();
+        $fragments = [];
         $population = 0;
 
         //check if exists
@@ -142,7 +141,7 @@ class DistributionService
             throw new \Exception(sprintf('A distribution with name "%s" does already exists.', $name));
         } else {
             //if we should overwrite, get all previous distribution entities
-            $fragments = $this->em->getRepository('HappyrNormalDistributionBundle:Fragment')->findBy(array('summary' => $summary->getId()));
+            $fragments = $this->em->getRepository('HappyrNormalDistributionBundle:Fragment')->findBy(['summary' => $summary->getId()]);
         }
 
         //sort the values
@@ -186,14 +185,14 @@ class DistributionService
      */
     public function createValueFrequencyArray(array $values): array
     {
-        $result = array();
+        $result = [];
 
         foreach ($values as $v) {
             if (!isset($result["$v"])) {
                 $result["$v"] = 0;
             }
 
-            $result["$v"]++;
+            ++$result["$v"];
         }
 
         return $result;

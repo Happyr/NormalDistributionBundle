@@ -28,8 +28,8 @@ class StatisticsServiceTest extends TestCase
     {
         $service = new StatisticsService();
 
-        for ($i = 1; $i <= 9; $i++) {
-            $this->assertEquals($i, $service->getStanine(12+$i, 17, 2));
+        for ($i = 1; $i <= 9; ++$i) {
+            $this->assertEquals($i, $service->getStanine(12 + $i, 17, 2));
         }
     }
 

@@ -23,7 +23,7 @@ the unit normal distribution where mean value=0 and the standard distribution=1.
 
 The input to both functions is an array with values like array(3,6,2,6,4,2,3,6,8, ... );
 
-### Distribution Service
+### Distribution Services
 
 This service calculates a distribution of any type and saves some data in the database. The public functions to
 this service are ```addDistribution```, ```getPercentile``` and ```createValueFrequencyArray```.
