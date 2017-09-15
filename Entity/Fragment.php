@@ -5,12 +5,11 @@ namespace Happyr\NormalDistributionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Distribution.
- *
- * @author Tobias Nyholm
- *
  * @ORM\Table(name="HappyrDistributionFragment")
  * @ORM\Entity()
+
+ *
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class Fragment
 {

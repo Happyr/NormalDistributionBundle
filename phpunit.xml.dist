@@ -13,7 +13,6 @@
          bootstrap="./vendor/autoload.php"
         >
 
-    <formatter type="clover" usefile="false"/>
     <testsuites>
         <testsuite name="Happyr Test Suite">
             <directory>./Tests</directory>
@@ -25,7 +24,6 @@
             <directory>./vendor/</directory>
             <directory>./Tests/</directory>
             <directory>./Resources/</directory>
-            <directory>./DependencyInjection/</directory>
 
             <!-- Don't test interfaces -->
             <directory suffix="Interface.php">./</directory>

@@ -3,11 +3,9 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
- * Class NormalDistributionService.
- *
- * @author Tobias Nyholm
- *
  * Calculate the normal distribution for a set of values.
+ *
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class NormalDistributionCalculator
 {
@@ -16,11 +14,11 @@ class NormalDistributionCalculator
      * A standard normal distribution (or the unit normal distribution) is where
      * mean value=0 and the standard distribution=1.
      *
-     * @param array &$values
+     * @param array $values
      *
      * @return array $zValues
      */
-    public function calculateStandardNormalDistribution(array &$values)
+    public function calculateStandardNormalDistribution(array $values): array
     {
         list($meanValue, $standardDeviation) = $this->calculateNormalDistribution($values);
 
@@ -41,7 +39,7 @@ class NormalDistributionCalculator
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
-    public function calculateNormalDistribution(array &$values, $sample = true)
+    public function calculateNormalDistribution(array $values, bool $sample = true): array
     {
         list($meanValue, $variance, $populationCount) = $this->getMeanValue($values, $sample);
 
@@ -69,7 +67,7 @@ class NormalDistributionCalculator
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
-    protected function getMeanValue(array &$values, $sample = true)
+    private function getMeanValue(array &$values, bool $sample = true): array
     {
         $count = count($values);
         if ($count <= 2) {
@@ -100,7 +98,7 @@ class NormalDistributionCalculator
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
-    protected function tooSmallPopulation(array $values, $populationCount)
+    private function tooSmallPopulation(array $values, int $populationCount): array
     {
         if ($populationCount == 0) {
             return array(0, 0, 0, 0);

@@ -3,31 +3,30 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
 use Happyr\NormalDistributionBundle\Entity\Fragment;
 use Happyr\NormalDistributionBundle\Entity\Summary;
 
 /**
- * Class DistributionService.
- *
- * @author Tobias Nyholm
- *
  * This class handles distributions. It does not have to be a normal distribution.
  * Use this class when you have a normal distribution with an interval. Say that there are only
  * some values that are valid. Add the distribution to this service and we can give you the
  * correct percentile back.
+ *
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class DistributionService
 {
     /**
-     * @var \Doctrine\ORM\EntityManager em
+     * @var EntityManagerInterface em
      */
-    protected $em;
+    private $em;
 
     /**
-     * @param ObjectManager $em
+     * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
@@ -41,7 +40,7 @@ class DistributionService
      *
      * @return int [1,100]
      */
-    public function getPercentile($name, $value)
+    public function getPercentile(string $name, float $value): int
     {
         /* @var $lower \Happyr\NormalDistributionBundle\Entity\Fragment */
         /* @var $upper \Happyr\NormalDistributionBundle\Entity\Fragment */
@@ -76,7 +75,7 @@ class DistributionService
      *
      * @return array ($population, $lower, $upper)
      */
-    protected function getFragments($name, $value)
+    private function getFragments(string $name, float $value): array
     {
         /* @var $qb \Doctrine\ORM\QueryBuilder */
         $qb = $this->em->createQueryBuilder();
@@ -130,7 +129,7 @@ class DistributionService
      *
      * @return Summary
      */
-    public function addDistribution($name, array $values, $overwrite = false)
+    public function addDistribution(string $name, array $values, bool $overwrite = false): Summary
     {
         $fragments = array();
         $population = 0;
@@ -147,7 +146,7 @@ class DistributionService
         }
 
         //sort the values
-        $this->sortValues($values);
+        ksort($values);
 
         foreach ($values as $value => $frequency) {
             $population += $frequency;
@@ -181,11 +180,11 @@ class DistributionService
     /**
      * Create an array to use with addDistribution.
      *
-     * @param array &$values like array(3,5,6,1,6,2,7)
+     * @param array $values like array(3,5,6,1,6,2,7)
      *
      * @return array of form array($value=>$frequency)
      */
-    public function createValueFrequencyArray(array &$values)
+    public function createValueFrequencyArray(array $values): array
     {
         $result = array();
 
@@ -198,15 +197,5 @@ class DistributionService
         }
 
         return $result;
-    }
-
-    /**
-     * Sort the values.
-     *
-     * @param array $values
-     */
-    protected function sortValues(array &$values)
-    {
-        ksort($values);
     }
 }

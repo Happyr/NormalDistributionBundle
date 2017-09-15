@@ -5,12 +5,10 @@ namespace Happyr\NormalDistributionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Summary.
- *
- * @author Tobias Nyholm
- *
  * @ORM\Table(name="HappyrDistributionSummary")
  * @ORM\Entity()
+ *
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class Summary
 {

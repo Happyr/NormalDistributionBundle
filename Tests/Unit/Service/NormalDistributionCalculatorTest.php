@@ -1,8 +1,10 @@
 <?php
 
-namespace Happyr\NormalDistributionBundle\Tests\Service;
+namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
 use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
+use Nyholm\NSA;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class NormalDistributionServiceTest.
@@ -11,12 +13,14 @@ use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
  *
  * @author Tobias Nyholm
  */
-class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
+class NormalDistributionCalculatorTest extends TestCase
 {
     public function testCalculateStandardNormalDistribution()
     {
         $param = array(4, 2, 1, 5, 8, 1, 7);
-        $calculator = $this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('calculateNormalDistribution'));
+        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator')
+            ->setMethods(array('calculateNormalDistribution'))
+            ->getMock();
         $calculator->expects($this->once())
             ->method('calculateNormalDistribution')
             ->with($param)
@@ -80,7 +84,9 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
     public function testSmallCalculateNormalDistribution()
     {
         $param = array(4);
-        $calculator = $this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator')
+            ->setMethods(array('tooSmallPopulation'))
+            ->getMock();
         $calculator->expects($this->once())
             ->method('tooSmallPopulation')
             ->with($param, count($param))
@@ -90,7 +96,9 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(4711, $result);
 
         $param = array();
-        $calculator = $this->getMock('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator', array('tooSmallPopulation'));
+        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator')
+            ->setMethods(array('tooSmallPopulation'))
+            ->getMock();
         $calculator->expects($this->once())
             ->method('tooSmallPopulation')
             ->with($param, count($param))
@@ -102,49 +110,31 @@ class NormalDistributionCalculatorTest extends \PHPUnit_Framework_TestCase
 
     public function testGetMeanValue()
     {
-        $calculator = new NormalDistributionCalculatorDummy();
+        $calculator = new NormalDistributionCalculator();
 
         // population
-        $result = $calculator->dummyMeanValue(array(2, 5, 8, 4), false);
+        $result = NSA::invokeMethod($calculator, 'dummyMeanValue', array(2, 5, 8, 4), false);
         $this->assertEquals(array(4.75, 4.6875, 4), $result);
 
         // sample
-        $result = $calculator->dummyMeanValue(array(2, 5, 8, 4), true);
+        $result = NSA::invokeMethod($calculator, 'dummyMeanValue', array(2, 5, 8, 4), true);
         $this->assertEquals(array(4.75, 6.25, 4), $result);
 
-        $result = $calculator->dummyMeanValue(array(5, 5, 5));
+        $result = NSA::invokeMethod($calculator, 'dummyMeanValue', array(5, 5, 5));
         $this->assertEquals(array(5, 0, 3), $result);
 
-        $result = $calculator->dummyMeanValue(array());
+        $result = NSA::invokeMethod($calculator, 'dummyMeanValue', array());
         $this->assertEquals(array(0, 0, 0), $result);
     }
 
     public function testTooSmallPopulation()
     {
-        $calculator = new NormalDistributionCalculatorDummy();
+        $calculator = new NormalDistributionCalculator();
 
-        $result = $calculator->tooSmallPopulation(array(), 0);
+        $result = NSA::invokeMethod($calculator, 'tooSmallPopulation', array(), 0);
         $this->assertEquals(array(0, 0, 0, 0), $result);
 
-        $result = $calculator->tooSmallPopulation(array(5), 1);
+        $result = NSA::invokeMethod($calculator, 'tooSmallPopulation', array(5), 1);
         $this->assertEquals(array(5, 0, 0, 1), $result);
-    }
-}
-
-class NormalDistributionCalculatorDummy extends NormalDistributionCalculator
-{
-    public function dummyNormalDistribution(array $values, $sample=true)
-    {
-        return parent::calculateNormalDistribution($values, $sample);
-    }
-
-    public function dummyMeanValue(array $values, $sample=true)
-    {
-        return parent::getMeanValue($values, $sample);
-    }
-
-    public function tooSmallPopulation(array $values, $populationCount)
-    {
-        return parent::tooSmallPopulation($values, $populationCount);
     }
 }

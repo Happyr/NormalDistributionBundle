@@ -1,15 +1,16 @@
 <?php
 
-namespace Happyr\NormalDistributionBundle\Tests\Service;
+namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
 use Happyr\NormalDistributionBundle\Service\StatisticsService;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class StatisticsServiceTest.
  *
  * @author Tobias Nyholm
  */
-class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
+class StatisticsServiceTest extends TestCase
 {
     public function testGetPercentile()
     {
