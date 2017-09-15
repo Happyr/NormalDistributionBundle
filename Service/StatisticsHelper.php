@@ -7,10 +7,10 @@ namespace Happyr\NormalDistributionBundle\Service;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class StatisticsService
+class StatisticsHelper
 {
     /**
-     * Get the percentile for a curtain value.
+     * Get the percentile for a specific value.
      *
      * @param float $value
      * @param float $meanValue

@@ -6,9 +6,9 @@ namespace Happyr\NormalDistributionBundle\Tests\Functional;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Happyr\NormalDistributionBundle\HappyrNormalDistributionBundle;
-use Happyr\NormalDistributionBundle\Service\DistributionService;
-use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
-use Happyr\NormalDistributionBundle\Service\StatisticsService;
+use Happyr\NormalDistributionBundle\Service\DistributionManager;
+use Happyr\NormalDistributionBundle\Service\Calculator;
+use Happyr\NormalDistributionBundle\Service\StatisticsHelper;
 use Nyholm\BundleTest\BaseBundleTestCase;
 
 class BundleInitializationTest extends BaseBundleTestCase
@@ -32,9 +32,9 @@ class BundleInitializationTest extends BaseBundleTestCase
         $container = $this->getContainer();
 
         $classes = [
-            DistributionService::class,
-            NormalDistributionCalculator::class,
-            StatisticsService::class,
+            DistributionManager::class,
+            Calculator::class,
+            StatisticsHelper::class,
         ];
 
         foreach ($classes as $class) {

@@ -2,7 +2,7 @@
 
 namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
-use Happyr\NormalDistributionBundle\Service\DistributionService;
+use Happyr\NormalDistributionBundle\Service\DistributionManager;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,7 +27,7 @@ class DistributionServiceTest extends TestCase
         $upper->expects($this->once())->method('getCumulativeFrequency')->will($this->returnValue(55));
         $upper->expects($this->once())->method('getValue')->will($this->returnValue(60));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -51,7 +51,7 @@ class DistributionServiceTest extends TestCase
         $fragment = $this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
             ->disableOriginalConstructor()->getMock();
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -62,7 +62,7 @@ class DistributionServiceTest extends TestCase
 
         $this->assertEquals(100, $service->getPercentile($name, $value));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -78,7 +78,7 @@ class DistributionServiceTest extends TestCase
     {
         $em = $this->getMockBuilder('Doctrine\ORM\EntityManagerInterface')
             ->disableOriginalConstructor()->getMock();
-        $service = new DistributionService($em);
+        $service = new DistributionManager($em);
 
         $param = [2, 5, 7, 2, 6, 7, 3, 4, 7, 27, 8, 3];
         $result = [
