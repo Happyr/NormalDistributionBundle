@@ -1,14 +1,14 @@
 parameters:
 
 services:
-  happyr.normal_distribution.normal_distribution_calculator:
+  Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator:
     class: Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator
     arguments: []
 
-  happyr.normal_distribution.statistics_service:
+  Happyr\NormalDistributionBundle\Service\StatisticsService:
     class: Happyr\NormalDistributionBundle\Service\StatisticsService
     arguments: []
 
-  happyr.normal_distribution.distribution_service:
+  Happyr\NormalDistributionBundle\Service\DistributionService:
       class: Happyr\NormalDistributionBundle\Service\DistributionService
-      arguments: [@doctrine.orm.entity_manager]
+      arguments: ["@doctrine.orm.entity_manager"]

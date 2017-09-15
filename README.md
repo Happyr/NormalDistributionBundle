@@ -1,5 +1,12 @@
 # Happyr Normal Distribution Bundle
+
+[![Latest Version](https://img.shields.io/github/release/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://github.com/Happyr/NormalDistributionBundle/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Build Status](https://img.shields.io/travis/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://travis-ci.org/Happyr/NormalDistributionBundle)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Happyr/NormalDistributionBundle)
+[![Quality Score](https://img.shields.io/scrutinizer/g/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Happyr/NormalDistributionBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d/mini.png)](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d)
+[![Total Downloads](https://img.shields.io/packagist/dt/happyr/normal-distribution-bundle.svg?style=flat-square)](https://packagist.org/packages/happyr/normal-distribution-bundle)
 
 A bundle to calculate distributions and some statistical important values with those distributions.
 
@@ -10,13 +17,13 @@ describes how to use them and why. This is a brief overview.
 
 ### Normal Distribution Calculator
 
-Use this service when you want to calculate a normal distribution. This service has to functions
+Use this service when you want to calculate a normal distribution. This service has two functions
 ```calculateNormalDistribution``` and ```calculateStandardNormalDistribution```. The later calculates
 the unit normal distribution where mean value=0 and the standard distribution=1.
 
 The input to both functions is an array with values like array(3,6,2,6,4,2,3,6,8, ... );
 
-### Distribution Service
+### Distribution Services
 
 This service calculates a distribution of any type and saves some data in the database. The public functions to
 this service are ```addDistribution```, ```getPercentile``` and ```createValueFrequencyArray```.
@@ -68,33 +75,18 @@ may use ```getZTransform```. Use ```getStanine``` to get the stanine value for a
 The last function of this class returns the stanine value for a given percentile. This is useful when your distribution
 isn't a standard distribution. Use DistributionService->getPercentile() and then StatisticsService->getStanineForPercentile()
 
-##Installation
+## Installation
 
-### Step 1: Using Composer
 
 Install it with Composer!
 
-```js
-// composer.json
-{
-    // ...
-    require: {
-        // ...
-        "happyr/normal-distribution-bundle": "dev-master",
-    }
-}
-```
-
-Then, you can install the new dependencies by running Composer's ``update``
-command from the directory where your ``composer.json`` file is located:
 
 ```bash
-$ php composer.phar update
+composer require happyr/normal-distribution-bundle
 ```
 
-### Step 2: Register the bundle
 
- To register the bundles with your kernel:
+After the dependencies are downloaded, then register the bundle in the AppKernel.
 
 ```php
 <?php
@@ -107,7 +99,7 @@ $bundles = array(
 );
 ```
 
-### Step 3: Update the database
+### Update the database
 
 The bundle contains two entities. You should update your database with a migration script or (if you are in a
 pure dev environment) run the following command:

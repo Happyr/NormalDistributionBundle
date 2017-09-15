@@ -1,15 +1,16 @@
 <?php
 
-namespace Happyr\NormalDistributionBundle\Tests\Service;
+namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
 use Happyr\NormalDistributionBundle\Service\StatisticsService;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class StatisticsServiceTest.
  *
  * @author Tobias Nyholm
  */
-class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
+class StatisticsServiceTest extends TestCase
 {
     public function testGetPercentile()
     {
@@ -27,8 +28,8 @@ class StatisticsServiceTest extends \PHPUnit_Framework_TestCase
     {
         $service = new StatisticsService();
 
-        for ($i = 1; $i <= 9; $i++) {
-            $this->assertEquals($i, $service->getStanine(12+$i, 17, 2));
+        for ($i = 1; $i <= 9; ++$i) {
+            $this->assertEquals($i, $service->getStanine(12 + $i, 17, 2));
         }
     }
 

@@ -5,17 +5,16 @@ namespace Happyr\NormalDistributionBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Distribution.
- *
- * @author Tobias Nyholm
- *
  * @ORM\Table(name="HappyrDistributionFragment")
  * @ORM\Entity()
+
+ *
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class Fragment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -38,14 +37,14 @@ class Fragment
     protected $value;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */
     protected $frequency;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(type="integer")
      */

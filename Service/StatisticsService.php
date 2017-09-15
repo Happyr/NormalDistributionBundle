@@ -3,11 +3,9 @@
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
- * Class StatisticsService.
+ * Get some values from a already calculated normal distribution.
  *
- * @author Tobias Nyholm
- *
- * Get some values from a already calculated normal distribution
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class StatisticsService
 {
@@ -20,7 +18,7 @@ class StatisticsService
      *
      * @return int [0,100]
      */
-    public function getPercentile($value, $meanValue = 0, $standardDeviation = 1)
+    public function getPercentile(float $value, float $meanValue = 0, float $standardDeviation = 1): int
     {
         $z = $this->getZTransform($value, $meanValue, $standardDeviation);
 
@@ -45,7 +43,7 @@ class StatisticsService
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
 
-        return ceil($percentile*100);
+        return ceil($percentile * 100);
     }
 
     /**
@@ -57,7 +55,7 @@ class StatisticsService
      *
      * @return float
      */
-    public function getZTransform($value, $meanValue, $standardDeviation)
+    public function getZTransform(float $value, float $meanValue, float $standardDeviation): float
     {
         return ($value - $meanValue) / $standardDeviation;
     }
@@ -72,7 +70,7 @@ class StatisticsService
      *
      * @return int [1,9]
      */
-    public function getStanine($value, $meanValue = 0, $standardDeviation = 1)
+    public function getStanine(float $value, float $meanValue = 0, float $standardDeviation = 1): int
     {
         //$bound is now the lower limit of stanine=2
         $bound = $meanValue - (1.75 * $standardDeviation);
@@ -95,14 +93,13 @@ class StatisticsService
      *
      * @return int [1,9]
      */
-    public function getStanineForPercentile($percentile)
+    public function getStanineForPercentile(float $percentile): int
     {
         //an array with boundaries. These must be in ascending order
-        $limits = array(4, 11, 23, 40, 60, 77, 89, 96);
+        $limits = [4, 11, 23, 40, 60, 77, 89, 96];
 
         //for each limit
         foreach ($limits as $key => $limit) {
-
             //if the percentile is smaller than the limit
             if ($percentile < $limit) {
                 //the slot is $key+1
