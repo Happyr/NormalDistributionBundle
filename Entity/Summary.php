@@ -2,43 +2,26 @@
 
 namespace Happyr\NormalDistributionBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Table(name="HappyrDistributionSummary")
- * @ORM\Entity()
- *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 final class Summary
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 
     /**
      * @var int
-     *
-     * @ORM\Column(type="integer")
      */
     private $population;
 
-    /**
-     * @param string $name
-     * @param int    $population
-     */
     public function __construct(string $name, int $population = 0)
     {
         $this->name = $name;

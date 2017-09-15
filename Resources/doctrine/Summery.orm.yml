@@ -1,0 +1,13 @@
+Happyr\NormalDistributionBundle\Entity\Summary:
+    type: entity
+    table: HappyrDistributionSummary
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        name:
+            type: integer
+        population:
+            type: integer

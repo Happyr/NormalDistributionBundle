@@ -2,50 +2,33 @@
 
 namespace Happyr\NormalDistributionBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Table(name="HappyrDistributionFragment")
- * @ORM\Entity()
- *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 final class Fragment
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var Summary summary
-     *
-     * @ORM\ManyToOne(targetEntity="Happyr\NormalDistributionBundle\Entity\Summary")
      */
     private $summary;
 
     /**
      * @var float
-     *
-     * @ORM\Column(type="float")
      */
     private $value = 0;
 
     /**
      * @var int
-     *
-     * @ORM\Column(type="integer")
      */
     private $frequency = 0;
 
     /**
      * @var int
-     *
-     * @ORM\Column(type="integer")
      */
     private $cumulativeFrequency = 0;
 
