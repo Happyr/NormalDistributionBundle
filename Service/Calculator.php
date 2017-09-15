@@ -7,7 +7,7 @@ namespace Happyr\NormalDistributionBundle\Service;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class Calculator
+final class Calculator
 {
     /**
      * Calculate the standard normal distribution

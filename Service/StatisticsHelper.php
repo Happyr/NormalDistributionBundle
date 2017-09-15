@@ -7,7 +7,7 @@ namespace Happyr\NormalDistributionBundle\Service;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class StatisticsHelper
+final class StatisticsHelper
 {
     /**
      * Get the percentile for a specific value.
