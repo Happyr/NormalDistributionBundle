@@ -1,0 +1,8 @@
+# Doctrine Configuration
+doctrine:
+  dbal:
+    driver: pdo_mysql
+
+  orm:
+    auto_generate_proxy_classes: true
+    auto_mapping: true

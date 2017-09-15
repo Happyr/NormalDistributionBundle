@@ -6,6 +6,9 @@ namespace Happyr\NormalDistributionBundle\Tests\Functional;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Happyr\NormalDistributionBundle\HappyrNormalDistributionBundle;
+use Happyr\NormalDistributionBundle\Service\DistributionService;
+use Happyr\NormalDistributionBundle\Service\NormalDistributionCalculator;
+use Happyr\NormalDistributionBundle\Service\StatisticsService;
 use Nyholm\BundleTest\BaseBundleTestCase;
 
 class BundleInitializationTest extends BaseBundleTestCase
@@ -19,6 +22,8 @@ class BundleInitializationTest extends BaseBundleTestCase
     {
         $kernel = $this->createKernel();
         $kernel->addBundle(DoctrineBundle::class);
+        $kernel->addConfigFile(__DIR__.'/config.yml');
+
 
         // Boot the kernel.
         $this->bootKernel();
@@ -26,9 +31,17 @@ class BundleInitializationTest extends BaseBundleTestCase
         // Get the container
         $container = $this->getContainer();
 
-        // Test if you services exists
-        $this->assertTrue($container->has('acme.foo'));
-        $service = $container->get('acme.foo');
-        $this->assertInstanceOf(Foo::class, $service);
+        $classes = [
+            DistributionService::class,
+            NormalDistributionCalculator::class,
+            StatisticsService::class,
+        ];
+
+        foreach ($classes as $class) {
+            // Test if you services exists
+            $this->assertTrue($container->has($class));
+            $service = $container->get($class);
+            $this->assertInstanceOf($class, $service);
+        }
     }
 }
