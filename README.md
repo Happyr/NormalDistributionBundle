@@ -2,7 +2,7 @@
 
 [![Latest Version](https://img.shields.io/github/release/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://github.com/Happyr/NormalDistributionBundle/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://img.shields.io/travis/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://travis-ci.org/Happyr/NormalDistributionBundle)
+[![Build Status](https://img.shields.io/travis/Happyr/NormalDistributionBundle/master.svg?style=flat-square)](https://travis-ci.org/Happyr/NormalDistributionBundle)
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Happyr/NormalDistributionBundle)
 [![Quality Score](https://img.shields.io/scrutinizer/g/Happyr/NormalDistributionBundle.svg?style=flat-square)](https://scrutinizer-ci.com/g/Happyr/NormalDistributionBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d/mini.png)](https://insight.sensiolabs.com/projects/95c8e1d1-2b53-45db-a49d-ae772c5f270d)
