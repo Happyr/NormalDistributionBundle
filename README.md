@@ -17,7 +17,7 @@ describes how to use them and why. This is a brief overview.
 
 ### Normal Distribution Calculator
 
-Use this service when you want to calculate a normal distribution. This service has to functions
+Use this service when you want to calculate a normal distribution. This service has two functions
 ```calculateNormalDistribution``` and ```calculateStandardNormalDistribution```. The later calculates
 the unit normal distribution where mean value=0 and the standard distribution=1.
 
