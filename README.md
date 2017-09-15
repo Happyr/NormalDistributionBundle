@@ -36,11 +36,13 @@ The array must be on the form ($value => $frequency). See example below.
 
 namespace Acme\DemoBundle\Controller;
 
+use Happyr\NormalDistributionBundle\Service\DistributionManager;
+
 class DemoController
 {
     public function testController()
     {
-        $distributionService = $this->get('happyr.normal_distribution.distribution_service');
+        $distributionService = $this->get(DistributionManager::class);
 
         $foo = array(8,6,2,6,4,2,3,6,4,8,2,7);
         $bar = $distributionService->createValueFrequencyArray($foo);
