@@ -15,21 +15,21 @@ A bundle to calculate distributions and some statistical important values with t
 This bundle has three services that helps you with your distribution. Each service and function has comments that
 describes how to use them and why. This is a brief overview.
 
-### Normal Distribution Calculator
+### Calculator
 
-Use this service when you want to calculate a normal distribution. This service has two functions
-```calculateNormalDistribution``` and ```calculateStandardNormalDistribution```. The later calculates
-the unit normal distribution where mean value=0 and the standard distribution=1.
+Use this service when you want to calculate a normal distribution. This service has two functions `normalDistribution` 
+and `standardDistribution`. The later calculates the unit normal distribution where `meanValue = 0` 
+and the `standardDistribution = 1`.
 
 The input to both functions is an array with values like array(3,6,2,6,4,2,3,6,8, ... );
 
-### Distribution Services
+### DistributionManager
 
-This service calculates a distribution of any type and saves some data in the database. The public functions to
-this service are ```addDistribution```, ```getPercentile``` and ```createValueFrequencyArray```.
+This service builds a distribution of any type and saves some data in the database. The public functions to
+this service are `addDistribution`, `getPercentile` and `createValueFrequencyArray`.
 
-*addDistribution* takes an identifier name and an array with the values and frequency as arguments. The array must
-be on the form ($value => $frequency). See example below.
+`DistributionManager::addDistribution` takes an identifier name and an array with the values and frequency as arguments. 
+The array must be on the form ($value => $frequency). See example below.
 
 ```php
 <?php
@@ -58,7 +58,7 @@ class DemoController
         $distributionService->addDistribution('test_id', $bar);
 
         //get the percentile for a value
-        $percentile = $distributionService->getPercentile('test_id', 3.5)
+        $percentile = $distributionService->getPercentile('test_id', 3.5);
 
         /* ... */
     }
@@ -66,25 +66,24 @@ class DemoController
 
 ```
 
-### Statistics Service
+### StatisticsHelper
 
-The statistics service is made for get values from an existing normal distribution. You may fetch the percentile for a
-value with ```getPercentile```. If you want to do a z-transform to get the value in a standard normal distribution you
-may use ```getZTransform```. Use ```getStanine``` to get the stanine value for a value in the normal distribution.
+The `StatisticsHelper` is used when you want to get values from a pre-calcuated normal distribution. 
 
-The last function of this class returns the stanine value for a given percentile. This is useful when your distribution
-isn't a standard distribution. Use DistributionService->getPercentile() and then StatisticsService->getStanineForPercentile()
+- `getPercentile`: Fetch the percentile for a given value
+- `getZTransform`: Perform a Z-transformation to get a normalized value given your normal distribution. 
+- `getStanine`: Get the stanine value for a given value
+- `getStanineForPercentile`:  Get the stanine value for a given percentile. This is useful when your distribution
+isn't a standard distribution. 
+
 
 ## Installation
 
-
 Install it with Composer!
-
 
 ```bash
 composer require happyr/normal-distribution-bundle
 ```
-
 
 After the dependencies are downloaded, then register the bundle in the AppKernel.
 

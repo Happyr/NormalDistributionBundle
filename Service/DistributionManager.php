@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,7 +17,7 @@ use Happyr\NormalDistributionBundle\Entity\Summary;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class DistributionService
+class DistributionManager
 {
     /**
      * @var EntityManagerInterface em
@@ -63,7 +65,7 @@ class DistributionService
 
         $x = $x0 + ($x1 - $x0) * ($value - $y0) / ($y1 - $y0);
 
-        return ceil(100 * $x / $population);
+        return (int) ceil(100 * $x / $population);
     }
 
     /**

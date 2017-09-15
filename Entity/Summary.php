@@ -1,45 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * @ORM\Table(name="HappyrDistributionSummary")
- * @ORM\Entity()
- *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class Summary
+final class Summary
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(type="string", length=255, unique=true)
      */
-    protected $name;
+    private $name;
 
     /**
      * @var int
-     *
-     * @ORM\Column(type="integer")
      */
-    protected $population;
+    private $population;
 
-    /**
-     * @param string $name
-     * @param int    $population
-     */
-    public function __construct($name, $population = 0)
+    public function __construct(string $name, int $population = 0)
     {
         $this->name = $name;
         $this->population = $population;
@@ -55,40 +40,32 @@ class Summary
 
     /**
      * @param string $name
-     *
-     * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
     /**
      * @param int $population
-     *
-     * @return $this
      */
-    public function setPopulation($population)
+    public function setPopulation(int $population)
     {
         $this->population = $population;
-
-        return $this;
     }
 
     /**
      * @return int
      */
-    public function getPopulation()
+    public function getPopulation(): int
     {
         return $this->population;
     }

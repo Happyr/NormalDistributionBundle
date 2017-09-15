@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
@@ -7,10 +9,10 @@ namespace Happyr\NormalDistributionBundle\Service;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class StatisticsService
+final class StatisticsHelper
 {
     /**
-     * Get the percentile for a curtain value.
+     * Get the percentile for a specific value.
      *
      * @param float $value
      * @param float $meanValue
@@ -43,7 +45,7 @@ class StatisticsService
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
 
-        return ceil($percentile * 100);
+        return (int) ceil($percentile * 100);
     }
 
     /**

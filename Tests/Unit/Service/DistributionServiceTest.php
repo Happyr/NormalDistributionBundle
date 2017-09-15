@@ -2,7 +2,9 @@
 
 namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
-use Happyr\NormalDistributionBundle\Service\DistributionService;
+use Happyr\NormalDistributionBundle\Entity\Fragment;
+use Happyr\NormalDistributionBundle\Entity\Summary;
+use Happyr\NormalDistributionBundle\Service\DistributionManager;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -17,17 +19,16 @@ class DistributionServiceTest extends TestCase
         $name = 'test';
         $value = 50;
 
-        $lower = $this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
-            ->disableOriginalConstructor()->getMock();
-        $lower->expects($this->once())->method('getCumulativeFrequency')->will($this->returnValue(40));
-        $lower->expects($this->once())->method('getValue')->will($this->returnValue(12));
+        $summery = new Summary($name);
+        $lower = new Fragment($summery);
+        $lower->setCumulativeFrequency(40);
+        $lower->setValue(12);
 
-        $upper = $this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
-            ->disableOriginalConstructor()->getMock();
-        $upper->expects($this->once())->method('getCumulativeFrequency')->will($this->returnValue(55));
-        $upper->expects($this->once())->method('getValue')->will($this->returnValue(60));
+        $upper = new Fragment($summery);
+        $upper->setCumulativeFrequency(55);
+        $upper->setValue(60);
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -48,10 +49,9 @@ class DistributionServiceTest extends TestCase
         $name = 'test';
         $value = 50;
 
-        $fragment = $this->getMockBuilder('Happyr\NormalDistributionBundle\Entity\Fragment')
-            ->disableOriginalConstructor()->getMock();
+        $fragment = new Fragment(new Summary('test'));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -62,7 +62,7 @@ class DistributionServiceTest extends TestCase
 
         $this->assertEquals(100, $service->getPercentile($name, $value));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionService')
+        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -78,7 +78,7 @@ class DistributionServiceTest extends TestCase
     {
         $em = $this->getMockBuilder('Doctrine\ORM\EntityManagerInterface')
             ->disableOriginalConstructor()->getMock();
-        $service = new DistributionService($em);
+        $service = new DistributionManager($em);
 
         $param = [2, 5, 7, 2, 6, 7, 3, 4, 7, 27, 8, 3];
         $result = [

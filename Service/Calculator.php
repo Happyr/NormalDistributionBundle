@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
@@ -7,20 +9,20 @@ namespace Happyr\NormalDistributionBundle\Service;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class NormalDistributionCalculator
+class Calculator
 {
     /**
      * Calculate the standard normal distribution
      * A standard normal distribution (or the unit normal distribution) is where
-     * mean value=0 and the standard distribution=1.
+     * meanValue=0 and the standardDistribution=1.
      *
      * @param array $values
      *
      * @return array $zValues
      */
-    public function calculateStandardNormalDistribution(array $values): array
+    public function standardDistribution(array $values): array
     {
-        list($meanValue, $standardDeviation) = $this->calculateNormalDistribution($values);
+        list($meanValue, $standardDeviation) = $this->normalDistribution($values);
 
         //calculate z transform values
         $zValues = [];
@@ -32,14 +34,14 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Calculate the normal distribution of an array. This will return the "population standard deviation", not the sample standard deviation.
+     * Calculate the normal distribution of an array.
      *
      * @param array $values
-     * @param bool  $sample should we caluclate the mean value of a sample? or the entire population?
+     * @param bool  $sample should we calculate the mean value of a sample or the entire population?
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
-    public function calculateNormalDistribution(array $values, bool $sample = true): array
+    public function normalDistribution(array $values, bool $sample = true): array
     {
         list($meanValue, $variance, $populationCount) = $this->getMeanValue($values, $sample);
 
@@ -60,10 +62,10 @@ class NormalDistributionCalculator
     }
 
     /**
-     * Get the mean value of the sample. This will return the "population variance" not the sample variance.
+     * Get the mean value of the sample.
      *
      * @param array $values
-     * @param bool  $sample should we caluclate the mean value of a sample? or the entire population?
+     * @param bool  $sample should we calculate the mean value of a sample or the entire population?
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
