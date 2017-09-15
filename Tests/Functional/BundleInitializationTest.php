@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Happyr\NormalDistributionBundle\Tests\Functional;
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Happyr\NormalDistributionBundle\HappyrNormalDistributionBundle;
 use Nyholm\BundleTest\BaseBundleTestCase;
 
@@ -16,6 +17,9 @@ class BundleInitializationTest extends BaseBundleTestCase
 
     public function testInitBundle()
     {
+        $kernel = $this->createKernel();
+        $kernel->addBundle(DoctrineBundle::class);
+
         // Boot the kernel.
         $this->bootKernel();
 
