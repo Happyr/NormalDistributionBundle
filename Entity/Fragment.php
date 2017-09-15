@@ -7,11 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="HappyrDistributionFragment")
  * @ORM\Entity()
-
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class Fragment
+final class Fragment
 {
     /**
      * @var int
@@ -20,129 +19,83 @@ class Fragment
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @var Summary summary
      *
      * @ORM\ManyToOne(targetEntity="Happyr\NormalDistributionBundle\Entity\Summary")
      */
-    protected $summary;
+    private $summary;
 
     /**
      * @var float
      *
      * @ORM\Column(type="float")
      */
-    protected $value;
+    private $value = 0;
 
     /**
      * @var int
      *
      * @ORM\Column(type="integer")
      */
-    protected $frequency;
+    private $frequency = 0;
 
     /**
      * @var int
      *
      * @ORM\Column(type="integer")
      */
-    protected $cumulativeFrequency;
+    private $cumulativeFrequency = 0;
 
-    /**
-     * @param Summary $summary
-     */
     public function __construct(Summary $summary)
     {
         $this->summary = $summary;
     }
 
-    /**
-     * @param int $cumulativeFrequency
-     *
-     * @return $this
-     */
-    public function setCumulativeFrequency($cumulativeFrequency)
-    {
-        $this->cumulativeFrequency = $cumulativeFrequency;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCumulativeFrequency()
-    {
-        return $this->cumulativeFrequency;
-    }
-
-    /**
-     * @param int $frequency
-     *
-     * @return $this
-     */
-    public function setFrequency($frequency)
-    {
-        $this->frequency = $frequency;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getFrequency()
-    {
-        return $this->frequency;
-    }
-
-    /**
-     * @return int
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param \Happyr\NormalDistributionBundle\Entity\Summary $summary
-     *
-     * @return $this
-     */
     public function setSummary(Summary $summary)
     {
         $this->summary = $summary;
-
-        return $this;
     }
 
-    /**
-     * @return \Happyr\NormalDistributionBundle\Entity\Summary
-     */
-    public function getSummary()
+    public function getSummary(): Summary
     {
         return $this->summary;
     }
 
-    /**
-     * @param float $value
-     *
-     * @return $this
-     */
-    public function setValue($value)
+    public function setValue(float $value)
     {
         $this->value = $value;
-
-        return $this;
     }
 
-    /**
-     * @return float
-     */
-    public function getValue()
+    public function getValue(): float
     {
         return $this->value;
+    }
+
+    public function setCumulativeFrequency(int $cumulativeFrequency)
+    {
+        $this->cumulativeFrequency = $cumulativeFrequency;
+    }
+
+    public function getCumulativeFrequency(): int
+    {
+        return $this->cumulativeFrequency;
+    }
+
+    public function setFrequency(int $frequency)
+    {
+        $this->frequency = $frequency;
+    }
+
+    public function getFrequency(): int
+    {
+        return $this->frequency;
     }
 }
