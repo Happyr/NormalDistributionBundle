@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,7 +65,7 @@ class DistributionManager
 
         $x = $x0 + ($x1 - $x0) * ($value - $y0) / ($y1 - $y0);
 
-        return ceil(100 * $x / $population);
+        return (int) ceil(100 * $x / $population);
     }
 
     /**

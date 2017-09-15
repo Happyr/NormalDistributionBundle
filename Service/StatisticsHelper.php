@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Happyr\NormalDistributionBundle\Service;
 
 /**
@@ -43,7 +45,7 @@ final class StatisticsHelper
                 ($t * ($t * ($t * ($t * $b5 + $b4) + $b3) + $b2) + $b1));
         }
 
-        return ceil($percentile * 100);
+        return (int) ceil($percentile * 100);
     }
 
     /**
