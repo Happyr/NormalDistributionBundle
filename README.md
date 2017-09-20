@@ -42,10 +42,10 @@ class DemoController
 {
     public function testController()
     {
-        $distributionService = $this->get(DistributionManager::class);
+        $manager = $this->get(DistributionManager::class);
 
         $foo = array(8,6,2,6,4,2,3,6,4,8,2,7);
-        $bar = $distributionService->createValueFrequencyArray($foo);
+        $bar = $manager->createValueFrequencyArray($foo);
         /*
             $bar should now look like this:
             $bar = (
@@ -57,10 +57,12 @@ class DemoController
                 8 => 2
             )
         */
-        $distributionService->addDistribution('test_id', $bar);
+        $summary = $manager->addDistribution('test_id', $bar);
 
         //get the percentile for a value
-        $percentile = $distributionService->getPercentile('test_id', 3.5);
+        $percentile = $manager->getPercentile('test_id', 3.5);
+
+        $this->get('doctrine.orm.entity_manager')->flush();
 
         /* ... */
     }

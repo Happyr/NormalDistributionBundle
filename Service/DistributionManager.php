@@ -173,8 +173,6 @@ class DistributionManager
         $summary->setPopulation($population);
         $this->em->persist($summary);
 
-        $this->em->flush();
-
         return $summary;
     }
 
