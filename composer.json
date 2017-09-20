@@ -2,7 +2,7 @@
     "name": "happyr/normal-distribution-bundle",
     "type": "symfony-bundle",
     "description": "A bundle to calculate normal distribution and other related stuff",
-    "keywords": ["Statistics", "normal distribution", "standard deviation"],
+    "keywords": ["Statistics", "normal distribution", "standard deviation", "bell curve"],
     "license": "MIT",
     "authors": [
         {
