@@ -7,7 +7,7 @@ namespace Happyr\NormalDistributionBundle\Entity;
 /**
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-final class Fragment
+class Fragment
 {
     /**
      * @var int

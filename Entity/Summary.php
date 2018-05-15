@@ -7,7 +7,7 @@ namespace Happyr\NormalDistributionBundle\Entity;
 /**
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-final class Summary
+class Summary
 {
     /**
      * @var int
