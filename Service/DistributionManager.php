@@ -158,8 +158,8 @@ class DistributionManager
             }
 
             $fragment->setCumulativeFrequency($population);
-            $fragment->setFrequency($frequency);
-            $fragment->setValue($value);
+            $fragment->setFrequency((int) $frequency);
+            $fragment->setValue((float) $value);
 
             $this->em->persist($fragment);
         }
