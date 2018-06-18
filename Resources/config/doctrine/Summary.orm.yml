@@ -8,6 +8,6 @@ Happyr\NormalDistributionBundle\Entity\Summary:
 
     fields:
         name:
-            type: integer
+            type: string
         population:
             type: integer
