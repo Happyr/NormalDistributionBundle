@@ -8,6 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\NoResultException;
 use Happyr\NormalDistributionBundle\Entity\Fragment;
 use Happyr\NormalDistributionBundle\Entity\Summary;
+use Happyr\NormalDistributionBundle\Repository\FragmentRepository;
+use Happyr\NormalDistributionBundle\Repository\SummaryRepository;
 
 /**
  * This class handles distributions. It does not have to be a normal distribution.
@@ -19,14 +21,15 @@ use Happyr\NormalDistributionBundle\Entity\Summary;
  */
 class DistributionManager
 {
-    /**
-     * @var EntityManagerInterface em
-     */
     private $em;
+    private $summaryRepository;
+    private $fragmentRepository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, SummaryRepository $summaryRepository, FragmentRepository $fragmentRepository)
     {
         $this->em = $em;
+        $this->summaryRepository = $summaryRepository;
+        $this->fragmentRepository = $fragmentRepository;
     }
 
     /**
@@ -76,7 +79,7 @@ class DistributionManager
 
         $qb->select('f')
             ->addSelect('s.population')
-            ->from('HappyrNormalDistributionBundle:Fragment', 'f')
+            ->from(Fragment::class, 'f')
             ->join('f.summary', 's')
             ->where('s.name = :name')
             ->setParameter('name', $name)
@@ -126,14 +129,14 @@ class DistributionManager
         $population = 0;
 
         //check if exists
-        $summary = $this->em->getRepository('HappyrNormalDistributionBundle:Summary')->findOneByName($name);
+        $summary = $this->summaryRepository->findOneByName($name);
         if (!$summary) {
             $summary = new Summary($name);
         } elseif (!$overwrite) {
             throw new \Exception(sprintf('A distribution with name "%s" does already exists.', $name));
         } else {
             //if we should overwrite, get all previous distribution entities
-            $fragments = $this->em->getRepository('HappyrNormalDistributionBundle:Fragment')->findBy(['summary' => $summary->getId()]);
+            $fragments = $this->fragmentRepository->findBySummary($summary->getId());
         }
 
         //sort the values

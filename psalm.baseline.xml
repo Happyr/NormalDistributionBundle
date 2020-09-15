@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="3.14.2@3538fe1955d47f6ee926c0769d71af6db08aa488">
-  <file src="src/DependencyInjection/Configuration.php">
-    <MixedAssignment occurrences="1">
-      <code>$rootNode</code>
-    </MixedAssignment>
-    <UndefinedMethod occurrences="1">
-      <code>root</code>
-    </UndefinedMethod>
+  <file src="/Users/tobias/Workspace/PHPStorm/analyze-api/vendor/doctrine/doctrine-bundle/Repository/ServiceEntityRepository.php">
+    <ArgumentTypeCoercion occurrences="2">
+      <code>$manager</code>
+      <code>$manager-&gt;getClassMetadata($entityClass)</code>
+    </ArgumentTypeCoercion>
   </file>
   <file src="src/DependencyInjection/HappyrNormalDistributionExtension.php">
     <MissingReturnType occurrences="1">
@@ -34,6 +32,20 @@
       <code>$id</code>
     </PropertyNotSetInConstructor>
   </file>
+  <file src="src/Repository/FragmentRepository.php">
+    <MixedReturnTypeCoercion occurrences="2">
+      <code>$this-&gt;findBy(['summary' =&gt; $summaryId])</code>
+      <code>Fragment[]</code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="src/Repository/SummaryRepository.php">
+    <LessSpecificReturnStatement occurrences="1">
+      <code>$this-&gt;findOneBy(['name' =&gt; $name])</code>
+    </LessSpecificReturnStatement>
+    <MoreSpecificReturnType occurrences="1">
+      <code>?Summary</code>
+    </MoreSpecificReturnType>
+  </file>
   <file src="src/Service/Calculator.php">
     <MixedArgument occurrences="4">
       <code>$populationCount</code>
@@ -55,11 +67,9 @@
     </MixedOperand>
   </file>
   <file src="src/Service/DistributionManager.php">
-    <MixedArgument occurrences="4">
+    <MixedArgument occurrences="2">
       <code>100 * $x / $population</code>
-      <code>$summary</code>
       <code>$population</code>
-      <code>$summary</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="4">
       <code>$result[0]</code>
@@ -67,7 +77,7 @@
       <code>$result[0]</code>
       <code>$result['population']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="14">
+    <MixedAssignment occurrences="13">
       <code>$x0</code>
       <code>$y0</code>
       <code>$x1</code>
@@ -79,23 +89,14 @@
       <code>$result</code>
       <code>$upperFragment</code>
       <code>$population</code>
-      <code>$summary</code>
       <code>$frequency</code>
       <code>$v</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>Summary</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="9">
+    <MixedMethodCall occurrences="4">
       <code>getCumulativeFrequency</code>
       <code>getValue</code>
       <code>getCumulativeFrequency</code>
       <code>getValue</code>
-      <code>getId</code>
-      <code>setCumulativeFrequency</code>
-      <code>setFrequency</code>
-      <code>setValue</code>
-      <code>setPopulation</code>
     </MixedMethodCall>
     <MixedOperand occurrences="8">
       <code>$x1</code>
@@ -107,11 +108,5 @@
       <code>100 * $x</code>
       <code>$frequency</code>
     </MixedOperand>
-    <MixedReturnStatement occurrences="1">
-      <code>$summary</code>
-    </MixedReturnStatement>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>findOneByName</code>
-    </UndefinedInterfaceMethod>
   </file>
 </files>
