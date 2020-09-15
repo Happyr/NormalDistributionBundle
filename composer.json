@@ -11,20 +11,27 @@
         }
     ],
     "require": {
-        "php": "^7.0"
+        "php": "^7.2",
+        "symfony/config": "^4.4 || ^5.1",
+        "symfony/dependency-injection": "^4.4 || ^5.1",
+        "symfony/http-kernel": "^4.4 || ^5.1"
     },
     "autoload": {
         "psr-4": {
-            "Happyr\\NormalDistributionBundle\\": ""
+            "Happyr\\NormalDistributionBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Happyr\\NormalDistributionBundle\\Tests\\": "tests/"
         }
     },
     "require-dev": {
-        "symfony/symfony": "^3.3",
-        "nyholm/symfony-bundle-test": "^1.2",
-        "phpunit/phpunit": "^6.2",
+        "nyholm/symfony-bundle-test": "^1.6",
+        "symfony/phpunit-bridge": "^4.4 || ^5.1",
         "nyholm/nsa": "^1.1",
-        "doctrine/doctrine-bundle": "^1.6",
-        "doctrine/orm": "^2.5"
+        "doctrine/doctrine-bundle": "^1.12 || ^2.0.9",
+        "doctrine/orm": "^2.7"
     },
     "scripts": {
         "test": "vendor/bin/phpunit",

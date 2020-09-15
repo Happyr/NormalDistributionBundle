@@ -6,13 +6,20 @@ namespace Happyr\NormalDistributionBundle\Tests\Functional;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Happyr\NormalDistributionBundle\HappyrNormalDistributionBundle;
-use Happyr\NormalDistributionBundle\Service\DistributionManager;
 use Happyr\NormalDistributionBundle\Service\Calculator;
+use Happyr\NormalDistributionBundle\Service\DistributionManager;
 use Happyr\NormalDistributionBundle\Service\StatisticsHelper;
 use Nyholm\BundleTest\BaseBundleTestCase;
+use Nyholm\BundleTest\CompilerPass\PublicServicePass;
 
 class BundleInitializationTest extends BaseBundleTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->addCompilerPass(new PublicServicePass('|.*NormalDistributionBundle.*|'));
+    }
+
     protected function getBundleClass()
     {
         return HappyrNormalDistributionBundle::class;

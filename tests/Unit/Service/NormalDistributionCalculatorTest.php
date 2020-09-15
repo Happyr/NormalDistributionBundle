@@ -46,16 +46,16 @@ class NormalDistributionCalculatorTest extends TestCase
         $input = [4, 2, 1, 5, 8, 1, 7];
         list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->normalDistribution($input);
         $this->assertEquals(7, $populationCount);
-        $this->assertEquals(8, $variance, '', 0.0001);
-        $this->assertEquals(2.82842, $standardDeviation, '', 0.0001);
+        $this->assertEqualsWithDelta(8, $variance, 0.0001);
+        $this->assertEqualsWithDelta(2.82842, $standardDeviation, 0.0001);
         $this->assertEquals(4, $meanValue);
 
         //Sample
         $input = [4, 6, 3, 7, 8, 2, 8, 9, 5, 4, 2, 6, 3, 1, 3, 6, 8, 9, 5, 3, 4, 6, 7, 8, 4];
         list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->normalDistribution($input);
         $this->assertEquals(25, $populationCount);
-        $this->assertEquals(5.52333, $variance, '', 0.0001);
-        $this->assertEquals(2.35017, $standardDeviation, '', 0.0001);
+        $this->assertEqualsWithDelta(5.52333, $variance, 0.0001);
+        $this->assertEqualsWithDelta(2.35017, $standardDeviation, 0.0001);
         $this->assertEquals(5.24, $meanValue);
     }
 
@@ -67,20 +67,20 @@ class NormalDistributionCalculatorTest extends TestCase
         $input = [4, 2, 1, 5, 8, 1, 7];
         list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->normalDistribution($input, false);
         $this->assertEquals(7, $populationCount);
-        $this->assertEquals(6.85714, $variance, '', 0.0001);
-        $this->assertEquals(2.61861, $standardDeviation, '', 0.0001);
+        $this->assertEqualsWithDelta(6.85714, $variance, 0.0001);
+        $this->assertEqualsWithDelta(2.61861, $standardDeviation, 0.0001);
         $this->assertEquals(4, $meanValue);
 
         //Population
         $input = [4, 6, 3, 7, 8, 2, 8, 9, 5, 4, 2, 6, 3, 1, 3, 6, 8, 9, 5, 3, 4, 6, 7, 8, 4];
         list($meanValue, $standardDeviation, $variance, $populationCount) = $calculator->normalDistribution($input, false);
         $this->assertEquals(25, $populationCount);
-        $this->assertEquals(5.3024, $variance, '', 0.0001);
-        $this->assertEquals(2.30269, $standardDeviation, '', 0.0001);
+        $this->assertEqualsWithDelta(5.3024, $variance, 0.0001);
+        $this->assertEqualsWithDelta(2.30269, $standardDeviation, 0.0001);
         $this->assertEquals(5.24, $meanValue);
     }
 
-    public function testSmallnormalDistribution()
+    public function testSmallNormalDistribution()
     {
         $value = [4711];
         $param = [4];

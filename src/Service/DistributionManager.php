@@ -24,9 +24,6 @@ class DistributionManager
      */
     private $em;
 
-    /**
-     * @param EntityManagerInterface $em
-     */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -34,10 +31,6 @@ class DistributionManager
 
     /**
      * Get the percentile for a distribution.
-     *
-     *
-     * @param string $name
-     * @param float  $value
      *
      * @return int [1,100]
      */
@@ -48,9 +41,9 @@ class DistributionManager
         list($population, $lower, $upper) = $this->getFragments($name, $value);
 
         //make sure we have upper and lower limits
-        if ($lower === null) {
+        if (null === $lower) {
             return 1;
-        } elseif ($upper === null) {
+        } elseif (null === $upper) {
             return 100;
         }
 
@@ -124,11 +117,8 @@ class DistributionManager
     /**
      * Add a distribution.
      *
-     * @param string $name
-     * @param array  &$values   must be of form array($value=>$frequency)
-     * @param bool   $overwrite if true we overwrite a previous distribution with the same name
-     *
-     * @return Summary
+     * @param array &$values   must be of form array($value=>$frequency)
+     * @param bool  $overwrite if true we overwrite a previous distribution with the same name
      */
     public function addDistribution(string $name, array $values, bool $overwrite = false): Summary
     {
