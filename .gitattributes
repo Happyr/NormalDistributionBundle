@@ -5,4 +5,4 @@
 /.php_cs          export-ignore
 /.travis.yml      export-ignore
 /phpunit.xml.dist export-ignore
-/Tests/           export-ignore
+/tests/           export-ignore
