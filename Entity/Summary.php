@@ -38,33 +38,21 @@ class Summary
         return $this->id;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param int $population
-     */
     public function setPopulation(int $population)
     {
         $this->population = $population;
     }
 
-    /**
-     * @return int
-     */
     public function getPopulation(): int
     {
         return $this->population;

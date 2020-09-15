@@ -14,10 +14,6 @@ final class StatisticsHelper
     /**
      * Get the percentile for a specific value.
      *
-     * @param float $value
-     * @param float $meanValue
-     * @param float $standardDeviation
-     *
      * @return int [0,100]
      */
     public function getPercentile(float $value, float $meanValue = 0, float $standardDeviation = 1): int
@@ -50,12 +46,6 @@ final class StatisticsHelper
 
     /**
      * This will return the corresponding value in a standard normal distribution.
-     *
-     * @param float $value
-     * @param float $meanValue
-     * @param float $standardDeviation
-     *
-     * @return float
      */
     public function getZTransform(float $value, float $meanValue, float $standardDeviation): float
     {
@@ -65,10 +55,6 @@ final class StatisticsHelper
     /**
      * Get the stanine value
      * http://en.wikipedia.org/wiki/Stanine.
-     *
-     * @param float $value
-     * @param float $meanValue
-     * @param float $standardDeviation
      *
      * @return int [1,9]
      */

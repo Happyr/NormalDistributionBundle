@@ -16,8 +16,6 @@ class Calculator
      * A standard normal distribution (or the unit normal distribution) is where
      * meanValue=0 and the standardDistribution=1.
      *
-     * @param array $values
-     *
      * @return array $zValues
      */
     public function standardDistribution(array $values): array
@@ -36,8 +34,7 @@ class Calculator
     /**
      * Calculate the normal distribution of an array.
      *
-     * @param array $values
-     * @param bool  $sample should we calculate the mean value of a sample or the entire population?
+     * @param bool $sample should we calculate the mean value of a sample or the entire population?
      *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
@@ -64,8 +61,7 @@ class Calculator
     /**
      * Get the mean value of the sample.
      *
-     * @param array $values
-     * @param bool  $sample should we calculate the mean value of a sample or the entire population?
+     * @param bool $sample should we calculate the mean value of a sample or the entire population?
      *
      * @return array ($meanValue, $variance, $populationCount)
      */
@@ -95,14 +91,11 @@ class Calculator
      * Call this when population count is 0, 1 or 2.
      * This handles those special cases.
      *
-     * @param array $values
-     * @param int   $populationCount
-     *
      * @return array ($meanValue, $standardDeviation, $variance, $populationCount)
      */
     protected function tooSmallPopulation(array $values, int $populationCount): array
     {
-        if ($populationCount == 0) {
+        if (0 == $populationCount) {
             return [0, 0, 0, 0];
         }
 
