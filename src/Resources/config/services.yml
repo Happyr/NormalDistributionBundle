@@ -5,9 +5,9 @@ services:
         autowire: true
         autoconfigure: true
 
-  Happyr\NormalDistributionBundle\Service\Calculator: ~
-  Happyr\NormalDistributionBundle\Service\StatisticsHelper: ~
-  Happyr\NormalDistributionBundle\Service\DistributionManager: ~
+    Happyr\NormalDistributionBundle\Service\Calculator: ~
+    Happyr\NormalDistributionBundle\Service\StatisticsHelper: ~
+    Happyr\NormalDistributionBundle\Service\DistributionManager: ~
 
-  Happyr\NormalDistributionBundle\Repository\SummaryRepository: ~
-  Happyr\NormalDistributionBundle\Repository\FragmentRepository: ~
+    Happyr\NormalDistributionBundle\Repository\SummaryRepository: ~
+    Happyr\NormalDistributionBundle\Repository\FragmentRepository: ~

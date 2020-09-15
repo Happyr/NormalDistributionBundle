@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Happyr\NormalDistributionBundle\Entity\Fragment"
+            table="HappyrDistributionFragment">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <many-to-one field="summary"
+                     target-entity="Happyr\NormalDistributionBundle\Entity\Summary"/>
+
+        <field name="value" column="value" type="float" nullable="false"/>
+        <field name="frequency" column="frequency" type="integer"
+               nullable="false"/>
+        <field name="cumulativeFrequency" column="cumulative_frequency"
+               type="integer" nullable="false"/>
+
+    </entity>
+
+</doctrine-mapping>

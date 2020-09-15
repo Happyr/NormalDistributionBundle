@@ -6,9 +6,7 @@ use Happyr\NormalDistributionBundle\Service\StatisticsHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class StatisticsServiceTest.
- *
- * @author Tobias Nyholm
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class StatisticsServiceTest extends TestCase
 {
