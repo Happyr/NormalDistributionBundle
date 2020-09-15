@@ -2,15 +2,14 @@
 
 namespace Happyr\NormalDistributionBundle\Tests\Unit\Service;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Happyr\NormalDistributionBundle\Entity\Fragment;
 use Happyr\NormalDistributionBundle\Entity\Summary;
 use Happyr\NormalDistributionBundle\Service\DistributionManager;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class DistributionServiceTest.
- *
- * @author Tobias Nyholm
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class DistributionServiceTest extends TestCase
 {
@@ -28,7 +27,7 @@ class DistributionServiceTest extends TestCase
         $upper->setCumulativeFrequency(55);
         $upper->setValue(60);
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
+        $service = $this->getMockBuilder(DistributionManager::class)
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -51,7 +50,7 @@ class DistributionServiceTest extends TestCase
 
         $fragment = new Fragment(new Summary('test'));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
+        $service = $this->getMockBuilder(DistributionManager::class)
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -62,7 +61,7 @@ class DistributionServiceTest extends TestCase
 
         $this->assertEquals(100, $service->getPercentile($name, $value));
 
-        $service = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\DistributionManager')
+        $service = $this->getMockBuilder(DistributionManager::class)
             ->disableOriginalConstructor()
             ->setMethods(['getFragments'])
             ->getMock();
@@ -76,7 +75,7 @@ class DistributionServiceTest extends TestCase
 
     public function testCreateValueFrequencyArray()
     {
-        $em = $this->getMockBuilder('Doctrine\ORM\EntityManagerInterface')
+        $em = $this->getMockBuilder(EntityManagerInterface::class)
             ->disableOriginalConstructor()->getMock();
         $service = new DistributionManager($em);
 

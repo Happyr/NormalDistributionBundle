@@ -7,18 +7,16 @@ use Nyholm\NSA;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class NormalDistributionServiceTest.
+ * http://www.calculator.net/standard-deviation-calculator.html.
  *
- * http://www.calculator.net/standard-deviation-calculator.html
- *
- * @author Tobias Nyholm
+ * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
 class NormalDistributionCalculatorTest extends TestCase
 {
     public function testStandardDistribution()
     {
         $param = [4, 2, 1, 5, 8, 1, 7];
-        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\Calculator')
+        $calculator = $this->getMockBuilder(Calculator::class)
             ->setMethods(['normalDistribution'])
             ->getMock();
         $calculator->expects($this->once())
@@ -84,7 +82,7 @@ class NormalDistributionCalculatorTest extends TestCase
     {
         $value = [4711];
         $param = [4];
-        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\Calculator')
+        $calculator = $this->getMockBuilder(Calculator::class)
             ->setMethods(['tooSmallPopulation'])
             ->getMock();
         $calculator->expects($this->once())
@@ -96,7 +94,7 @@ class NormalDistributionCalculatorTest extends TestCase
         $this->assertEquals($value, $result);
 
         $param = [];
-        $calculator = $this->getMockBuilder('Happyr\NormalDistributionBundle\Service\Calculator')
+        $calculator = $this->getMockBuilder(Calculator::class)
             ->setMethods(['tooSmallPopulation'])
             ->getMock();
         $calculator->expects($this->once())

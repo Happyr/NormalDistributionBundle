@@ -17,7 +17,7 @@
         <field name="value" column="value" type="float" nullable="false"/>
         <field name="frequency" column="frequency" type="integer"
                nullable="false"/>
-        <field name="cumulativeFrequency" column="cumulativeFrequency"
+        <field name="cumulativeFrequency" column="cumulative_frequency"
                type="integer" nullable="false"/>
 
     </entity>

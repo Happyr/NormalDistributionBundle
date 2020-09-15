@@ -14,8 +14,6 @@
         <field name="name" column="name" type="string" nullable="false"/>
         <field name="population" column="population" type="integer"
                nullable="false"/>
-
-
     </entity>
 
 </doctrine-mapping>
