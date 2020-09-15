@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="3.14.2@3538fe1955d47f6ee926c0769d71af6db08aa488">
-  <file src="Service/Calculator.php">
+  <file src="src/DependencyInjection/Configuration.php">
+    <MixedAssignment occurrences="1">
+      <code>$rootNode</code>
+    </MixedAssignment>
+    <UndefinedMethod occurrences="1">
+      <code>root</code>
+    </UndefinedMethod>
+  </file>
+  <file src="src/DependencyInjection/HappyrNormalDistributionExtension.php">
+    <MissingReturnType occurrences="1">
+      <code>load</code>
+    </MissingReturnType>
+  </file>
+  <file src="src/Entity/Fragment.php">
+    <MissingReturnType occurrences="5">
+      <code>getId</code>
+      <code>setSummary</code>
+      <code>setValue</code>
+      <code>setCumulativeFrequency</code>
+      <code>setFrequency</code>
+    </MissingReturnType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$id</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Entity/Summary.php">
+    <MissingReturnType occurrences="2">
+      <code>setName</code>
+      <code>setPopulation</code>
+    </MissingReturnType>
+    <PropertyNotSetInConstructor occurrences="1">
+      <code>$id</code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="src/Service/Calculator.php">
     <MixedArgument occurrences="4">
       <code>$populationCount</code>
       <code>$meanValue - $v</code>
@@ -20,7 +54,7 @@
       <code>$v</code>
     </MixedOperand>
   </file>
-  <file src="Service/DistributionManager.php">
+  <file src="src/Service/DistributionManager.php">
     <MixedArgument occurrences="4">
       <code>100 * $x / $population</code>
       <code>$summary</code>
